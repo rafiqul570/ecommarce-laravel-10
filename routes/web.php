@@ -36,4 +36,17 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+// SubscriberController
+Route::middleware('auth')->group(function () {
+    Route::controller(SubscriberController::class)->group(function(){
+        //Route::get('/bn_subscriber/index', 'index')->name('bn_subscriber.index');
+       // Route::get('/bn_subscriber/create', 'create')->name('bn_subscriber.create');
+        //Route::post('/bn_subscriber/store', 'store')->name('bn_subscriber.store');
+        //Route::get('/bn_subscriber/edit/{id}', 'edit')->name('bn_subscriber.edit');
+        //Route::post('/bn_subscriber/update', 'update')->name('bn_subscriber.update');
+        //Route::get('/bn_subscriber/delete/{id}', 'delete')->name('bn_subscriber.delete');
+
+    });
+});
+
 require __DIR__.'/auth.php';

@@ -24,7 +24,7 @@
 
   <!-- ########## START: LEFT PANEL ########## -->
 
-    <div class="sl-logo pl-5"><a href="../admin/index.php"><i class="icon ion-android-star-outline pr-2"></i> BNJM <i class="icon ion-android-star-outline pl-2"></i></a></div>
+    <div class="sl-logo pl-5"><a href="#"><span class="logged-name text-light mr-3">{{ Auth::user()->name }}</span></a></div>
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -120,37 +120,20 @@
         <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
         <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href=""><i class="icon ion-navicon-round"></i></a></div>
       </div><!-- sl-header-left -->
-      <div class="sl-header-right">
-        <nav class="nav">
-          <div class="dropdown">
-          <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name text-light mr-3">{{ Auth::user()->name }}</span></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-header wd-200">
-              <ul class="list-unstyled user-profile-nav">
-                <li><a href="
-                <form method="POST" action="{{ route('logout') }}">
-                @csrf
 
-                <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                    {{ __('Log out') }}
-                </x-dropdown-link>
-              </form>
-                "><i class="icon ion-power"></i> Sign Out</a></li>
-              </ul>
-            </div><!-- dropdown-menu -->
-          </div><!-- dropdown -->
+      <div class="sl-header-right" style="margin-right: 40px;">
+        <nav class="nav">
+         <!-- Authentication -->
+         <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <x-dropdown-link :href="route('logout')"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                {{ __('Log out') }}
+            </x-dropdown-link>
+        </form>
         </nav>
-        <div class="navicon-right">
-          <a id="btnRightMenu" href="" class="pos-relative">
-            <i class="icon ion-ios-bell-outline"></i>
-            <!-- start: if statement -->
-            <span class="square-8 bg-danger"></span>
-            <!-- end: if statement -->
-          </a>
-        </div><!-- navicon-right -->
       </div><!-- sl-header-right -->
     </div><!-- sl-header -->
   <!-- ########## END: HEAD PANEL ########## -->
