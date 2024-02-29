@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,10 +39,11 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+
 // Category
 Route::middleware('auth')->group(function () {
-    Route::controller(SubscriberController::class)->group(function(){
-        //Route::get('/ecom_category/index', 'index')->name('ecom_category.index');
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/ecom_category/index', 'index')->name('ecom_category.index');
         Route::get('/ecom_category/create', 'create')->name('ecom_category.create');
         Route::post('/ecom_category/store', 'store')->name('ecom_category.store');
         //Route::get('/ecom_category/edit/{id}', 'edit')->name('ecom_category.edit');
@@ -48,5 +52,32 @@ Route::middleware('auth')->group(function () {
 
     });
 });
+
+// Sub-Category
+Route::middleware('auth')->group(function () {
+    Route::controller(SubcategoryController::class)->group(function(){
+        Route::get('/ecom_subcategory/index', 'index')->name('ecom_subcategory.index');
+        Route::get('/ecom_subcategory/create', 'create')->name('ecom_subcategory.create');
+        Route::post('/ecom_subcategory/store', 'store')->name('ecom_subcategory.store');
+        //Route::get('/ecom_subcategory/edit/{id}', 'edit')->name('ecom_subcategory.edit');
+        //Route::post('/ecom_subcategory/update', 'update')->name('ecom_subcategory.update');
+        //Route::get('/ecom_subcategory/delete/{id}', 'delete')->name('ecom_subcategory.delete');
+
+    });
+});
+
+// Product
+Route::middleware('auth')->group(function () {
+    Route::controller(ProductController::class)->group(function(){
+        Route::get('/ecom_product/index', 'index')->name('ecom_product.index');
+        Route::get('/ecom_product/create', 'create')->name('ecom_product.create');
+        Route::post('/ecom_product/store', 'store')->name('ecom_product.store');
+        //Route::get('/ecom_product/edit/{id}', 'edit')->name('ecom_product.edit');
+        //Route::post('/ecom_product/update', 'update')->name('ecom_product.update');
+        //Route::get('/ecom_product/delete/{id}', 'delete')->name('ecom_product.delete');
+
+    });
+});
+
 
 require __DIR__.'/auth.php';
