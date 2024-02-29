@@ -36,15 +36,15 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-// SubscriberController
+// Category
 Route::middleware('auth')->group(function () {
     Route::controller(SubscriberController::class)->group(function(){
-        //Route::get('/bn_subscriber/index', 'index')->name('bn_subscriber.index');
-       // Route::get('/bn_subscriber/create', 'create')->name('bn_subscriber.create');
-        //Route::post('/bn_subscriber/store', 'store')->name('bn_subscriber.store');
-        //Route::get('/bn_subscriber/edit/{id}', 'edit')->name('bn_subscriber.edit');
-        //Route::post('/bn_subscriber/update', 'update')->name('bn_subscriber.update');
-        //Route::get('/bn_subscriber/delete/{id}', 'delete')->name('bn_subscriber.delete');
+        //Route::get('/ecom_category/index', 'index')->name('ecom_category.index');
+        Route::get('/ecom_category/create', 'create')->name('ecom_category.create');
+        Route::post('/ecom_category/store', 'store')->name('ecom_category.store');
+        //Route::get('/ecom_category/edit/{id}', 'edit')->name('ecom_category.edit');
+        //Route::post('/ecom_category/update', 'update')->name('ecom_category.update');
+        //Route::get('/ecom_category/delete/{id}', 'delete')->name('ecom_category.delete');
 
     });
 });

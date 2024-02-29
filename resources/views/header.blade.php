@@ -24,7 +24,7 @@
 
   <!-- ########## START: LEFT PANEL ########## -->
 
-    <div class="sl-logo pl-5"><a href="#"><span class="logged-name text-light mr-3">{{ Auth::user()->name }}</span></a></div>
+    <div class="sl-logo pl-5"><a href="{{route('dashboard'}}"><span class="logged-name text-light mr-3">{{ Auth::user()->name }}</span></a></div>
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -35,7 +35,7 @@
 
       <label class="sidebar-label"></label>
       <div class="sl-sideleft-menu">
-        <a href="../admin/index.php" class="sl-menu-link active">
+        <a href="{{route('dashboard'}}" class="sl-menu-link active">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
@@ -54,36 +54,43 @@
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <span class="menu-item-label">Subscriber</span>
+            <span class="menu-item-label">Category</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div>
         </a>
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="../bn_subscriber/add-subscriber.php" class="nav-link">Add Subscriber</a></li>
-          <li class="nav-item"><a href="../bn_subscriber/all-subscriber.php" class="nav-link">All Subscriber</a></li>
+          <li class="nav-item"><a href="{{route('ecom_category.create'}}" class="nav-link">Add Subscriber</a></li>
+          <li class="nav-item"><a href="{{route('ecom_category.index'}}" class="nav-link">All Subscriber</a></li>
         </ul>
 
           <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <span class="menu-item-label">Chada</span>
+            <span class="menu-item-label">Sub-category</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div>
         </a>
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="../bn_chada/add-chada.php" class="nav-link">Add chada</a></li>
-          <li class="nav-item"><a href="../bn_chada/all-chada.php" class="nav-link">All chada</a></li>
+          <li class="nav-item"><a href="{{route('ecom_subcategory.create')}}" class="nav-link">Add chada</a></li>
+          <li class="nav-item"><a href="{{route('ecom_subcategory.index')}}" class="nav-link">All chada</a></li>
         </ul>
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <span class="menu-item-label">Cash</span>
+            <span class="menu-item-label">Product</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div>
         </a>
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="../bn_cash/add-cash.php" class="nav-link">Add cash</a></li>
-          <li class="nav-item"><a href="../bn_cash/all-cash.php" class="nav-link">All cash</a></li>
+          <li class="nav-item"><a href="{{route('ecom_product.create')}} class="nav-link">Add cash</a></li>
+          <li class="nav-item"><a href="{{route('ecom_product.index')}}" class="nav-link">All cash</a></li>
         </ul>
+
+        <a href="{{route(orders)}}" target="_blank" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Orders</span>
+          </div><!-- menu-item -->
+        </a>
 
        <?php }else{ ?>
 
