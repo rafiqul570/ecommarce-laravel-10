@@ -12,7 +12,5 @@ class Category extends Model
     protected $fillable = [
         'category_name',
         'slug',
-        'subcategory_count',
-        'product_count',
     ];
 }

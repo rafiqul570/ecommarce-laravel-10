@@ -12,22 +12,27 @@
 <body>
     <div class="row">
      <div class="col-md-12">
-       <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-dark">
-        <h3 class="">Add Subscriber</h3>
+       <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
+       <div class="d-flex justify-content-between">
+          <h3 class="text-dark pb-3">Add Category</h3>
+          <h5><a  href="{{route('ecom_category.index')}}" class="btn btn-light text-dark">All Category</a></h5>
+          </div>
           <form action="{{route('ecom_category.store')}}" method="POST">
             @csrf
-            <div class="row row-xs mg-t-20">
-              <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span>Category Name:</label>
+            <div class="row">
+            <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Category name:</label>
               <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                <input type="text" name="category_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="চাঁদাদাতার নাম">
-                <x-input-error :messages="$errors->get('category_name')" class="mt-2" />
+                <input type="text" name="category_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
               </div>
+              <h6 class="col-sm-12 d-flex justify-content-center">
+              <x-input-error :messages="$errors->get('category_name')" class="mt-2 " />
+              </h6>
             </div>
 
             <div class="row row-xs mg-t-30">
                 <div class="col-sm-12 d-flex justify-content-end">
                   <div class="form-layout-footer">
-                    <button class="btn btn-info mg-r-5">Add Category</button>
+                    <button class="btn btn-light mg-r-5">Add Category</button>
                   </div><!-- form-layout-footer -->
                 </div><!-- col-8 -->
               </div>

@@ -46,9 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/ecom_category/index', 'index')->name('ecom_category.index');
         Route::get('/ecom_category/create', 'create')->name('ecom_category.create');
         Route::post('/ecom_category/store', 'store')->name('ecom_category.store');
-        //Route::get('/ecom_category/edit/{id}', 'edit')->name('ecom_category.edit');
-        //Route::post('/ecom_category/update', 'update')->name('ecom_category.update');
-        //Route::get('/ecom_category/delete/{id}', 'delete')->name('ecom_category.delete');
+        Route::get('/ecom_category/edit/{id}', 'edit')->name('ecom_category.edit');
+        Route::post('/ecom_category/update', 'update')->name('ecom_category.update');
+        Route::get('/ecom_category/delete/{id}', 'delete')->name('ecom_category.delete');
 
     });
 });
