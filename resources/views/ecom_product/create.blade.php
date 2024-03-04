@@ -42,7 +42,7 @@
                 <div class="row">
                     <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Product quentity :</label>
                       <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                        <input type="text" name="product_quentity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                        <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
                       </div>
                       <h6 class="col-sm-12 d-flex justify-content-center">
                         <x-input-error :messages="$errors->get('product_quentity')" class="mt-2 " />

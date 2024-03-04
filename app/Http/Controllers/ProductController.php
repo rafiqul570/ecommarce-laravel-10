@@ -11,8 +11,8 @@ class ProductController extends Controller
 {
    
     public function index(){
-        $allProduct = Category::latest()->get();
-        return view('ecom_category.index', compact('allProduct'));
+        $allProduct = Product::latest()->get();
+        return view('ecom_product.index', compact('allProduct'));
     }
 
     public function create(){
@@ -34,12 +34,15 @@ class ProductController extends Controller
             'long_description' => 'required',
             'product_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        //image upload       
+        if($request->has('product_img')){
             $image = $request->file('product_img');
-            $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
-            $request->product_img->move(public_path('upload'),$img_name);
-            $img_url = 'upload/'.$img_name;
+            $extension = $image->getClientOriginalExtension();
+            $image_name = time().'.'.$extension;
+            $path = 'uploads/image/';
+            $image->move($path, $image_name);
             
+        }
             $category_id = $request->category_id;
             $subcategory_id = $request->subcategory_id;
             
@@ -56,7 +59,7 @@ class ProductController extends Controller
             'long_description' => $request->long_description,
             'category_name' => $category_name,
             'subcategory_name' => $subcategory_name,
-            'product_img' => $img_url,
+            'product_img' => $path.$image_name,
             'slug' => strtolower(str_replace( ' ', '-', $request->product_name)),
         ]);
 
@@ -68,33 +71,49 @@ class ProductController extends Controller
     }
 
 
-//     public function edit($id){
-//         $editCategory = Category::FindOrFail($id);
+    public function edit($id){
+        $editProduct = Product::FindOrFail($id);
 
-//         return view('ecom_category.edit', compact('editCategory'));
+        return view('ecom_product.edit', compact('editProduct'));
 
-//     }
+    }
 
-//     public function update(Request $request){
-//         $id = $request->id;
+    public function update(Request $request){
+        $id = $request->id;
 
-//         $request->validate([
-//             'category_name' => 'required|unique:categories',
-//         ]);
+        $request->validate([
+            'product_name' => 'required|unique:products',
+            'product_price' => 'required',
+            'product_quantity' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+            'short_description' => 'required',
+            'long_description' => 'required',
+            'product_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-//         Category::FindOrFail($id)->update([
-//             'category_name' => $request->category_name,
-//             'slug' => strtolower(str_replace( '', '-', $request->category_name))
-//         ]);
+        Product::FindOrFail($id)->update([
+            'product_name' => $request->product_name,
+            'product_price' => $request->product_price,
+            'product_quantity' => $request->product_quantity,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+            'category_name' => $category_name,
+            'subcategory_name' => $subcategory_name,
+            'product_img' => $path.$image_name,
+            'slug' => strtolower(str_replace( ' ', '-', $request->product_name)),
+        ]);
 
 
-//         return redirect()->route('ecom_category.index')->with('success', 'Success! data update Successfully');
+        return redirect()->route('ecom_product.index')->with('success', 'Success! data update Successfully');
 
-//     }
+    }
 
-//     public function delete($id){
-//         Category::FindOrFail($id)->delete();
-//         return back()->with('success', 'Success! data delete Successfully');
-//     }
+    public function delete($id){
+        Product::FindOrFail($id)->delete();
+        return back()->with('success', 'Success! data delete Successfully');
+    }
 }
 
