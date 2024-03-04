@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>BNJM</title>
+    <title>ECOMMERCE</title>
 
     <!-- vendor css -->
     <link href="{{asset('backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -24,7 +24,7 @@
 
   <!-- ########## START: LEFT PANEL ########## -->
 
-    <div class="sl-logo pl-5"><a href="{{route('redirects')}}"><span class="text-uppercase logged-name text-light mr-3">{{ Auth::user()->name }}</span></a></div>
+    <div class="sl-logo pl-5"><span class="text-uppercase logged-name text-light mr-3">{{ Auth::user()->name }}</span></div>
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -43,7 +43,6 @@
         </a><!-- sl-menu-link -->
          <a href="../index.php" target="_blank" class="sl-menu-link">
           <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Visite Site</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
@@ -81,8 +80,8 @@
           </div>
         </a>
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{route('ecom_product.create')}}" class="nav-link">Add cash</a></li>
-          <li class="nav-item"><a href="{{route('ecom_product.index')}}" class="nav-link">All cash</a></li>
+          <li class="nav-item"><a href="{{route('ecom_product.create')}}" class="nav-link">Add Product</a></li>
+          <li class="nav-item"><a href="{{route('ecom_product.index')}}" class="nav-link">All Product</a></li>
         </ul>
 
         <a href="#" class="sl-menu-link">
@@ -116,7 +115,7 @@
         <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
         <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href=""><i class="icon ion-navicon-round"></i></a></div>
       </div><!-- sl-header-left -->
-
+      <!-- <span class="text-uppercase logged-name text-light mr-3">{{ Auth::user()->name }}</span> -->
       <div class="sl-header-right" style="margin-right: 40px;">
         <nav class="nav">
          <!-- Authentication -->

@@ -14,7 +14,7 @@
      <div class="col-md-12">
        <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
        <div class="d-flex justify-content-between">
-          <h3 class="text-dark pb-3">Add Category</h3>
+          <h3 class="text-dark pb-3">Add New Category</h3>
           <h5><a  href="{{route('ecom_category.index')}}" class="btn btn-light text-dark">All Category</a></h5>
           </div>
           <form action="{{route('ecom_category.store')}}" method="POST">

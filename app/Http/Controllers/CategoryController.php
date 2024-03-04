@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
      public function index(){
-        $allCategory = DB::table('categories')->get();
+        $allCategory = Category::latest()->get();
         return view('ecom_category.index', compact('allCategory'));
     }
 

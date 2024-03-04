@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/header.css">
 
-    <title>BNJM</title>
+    <title>ECOMMERCE</title>
 
   </head>
   <body>
