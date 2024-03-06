@@ -33,7 +33,7 @@
                <tr>
                  <td>{{++$key}}</td>
                  <td>{{$data->product_name}}</td>
-                 <td><img src="{{asset($data->product_img)}}" width="80" alt=""></td>
+                 <td><img src="{{asset('uploads/image/'.$data->product_img)}}" width="80" alt=""></td>
                  <td>
                     <a href="{{route('ecom_product.edit', $data->id)}}">Edit</a> ||
                     <a onclick="return confirm('Are you sure ?')" href="{{route('ecom_product.delete', $data->id)}}">Delete</a>

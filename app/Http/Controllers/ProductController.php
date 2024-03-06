@@ -39,12 +39,11 @@ class ProductController extends Controller
     //image upload       
         if($request->has('product_img')){
             $image = $request->file('product_img');
-            $extension = $image->getClientOriginalExtension();
-            $image_name = time().'.'.$extension;
-            $path = 'uploads/image/';
-            $image->move($path, $image_name);
+            $image_name = uniqid().'.'.$image->getClientOriginalExtension();
+            $image->move('uploads/image/',$image_name);
             
         }
+            
             $category_id = $request->category_id;
             $subcategory_id = $request->subcategory_id;
             
@@ -61,7 +60,7 @@ class ProductController extends Controller
             'long_description' => $request->long_description,
             'category_name' => $category_name,
             'subcategory_name' => $subcategory_name,
-            'product_img' => $path.$image_name,
+            'product_img' => $image_name,
             'slug' => strtolower(str_replace( ' ', '-', $request->product_name)),
         ]);
 
@@ -119,9 +118,9 @@ class ProductController extends Controller
 
         $product = Product::FindOrFail($id);
         
-        $allDelete = 'uploads/image/'.$product->product_img;
-        if(file_exists($allDelete)){
-        File::delete($allDelete);
+        $image = 'uploads/image/'.$product->product_img;
+        if(file_exists($image)){
+        File::delete($image);
         }
         
         $product->delete();
