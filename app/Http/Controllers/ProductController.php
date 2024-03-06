@@ -112,7 +112,13 @@ class ProductController extends Controller
     }
 
     public function delete($id){
+        $category_id = Product::where('id', $id)->value('category_id');
+        $subcategory_id = Product::where('id', $id)->value('subcategory_id');
+
         Product::FindOrFail($id)->delete();
+        
+        Category::where('id', $category_id)->decrement('product_count',1);
+        Subcategory::where('id', $subcategory_id)->decrement('product_count',1);
         return back()->with('success', 'Success! data delete Successfully');
     }
 }

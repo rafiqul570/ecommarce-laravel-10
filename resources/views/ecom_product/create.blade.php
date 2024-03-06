@@ -15,7 +15,7 @@
        <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
        <div class="d-flex justify-content-between">
           <h3 class="text-dark pb-3">Add New Product</h3>
-          <h5><a  href="{{route('ecom_product.index')}}" class="btn btn-light text-dark">All Subcategory</a></h5>
+          <h5><a  href="{{route('ecom_product.index')}}" class="btn btn-light text-dark">All Product</a></h5>
           </div>
           <form action="{{route('ecom_product.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
