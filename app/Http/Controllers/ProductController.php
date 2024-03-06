@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use File;
 
 class ProductController extends Controller
 {
@@ -34,7 +35,8 @@ class ProductController extends Controller
             'long_description' => 'required',
             'product_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        //image upload       
+        
+    //image upload       
         if($request->has('product_img')){
             $image = $request->file('product_img');
             $extension = $image->getClientOriginalExtension();
@@ -115,7 +117,14 @@ class ProductController extends Controller
         $category_id = Product::where('id', $id)->value('category_id');
         $subcategory_id = Product::where('id', $id)->value('subcategory_id');
 
-        Product::FindOrFail($id)->delete();
+        $product = Product::FindOrFail($id);
+        
+        $allDelete = 'uploads/image/'.$product->product_img;
+        if(file_exists($allDelete)){
+        File::delete($allDelete);
+        }
+        
+        $product->delete();
         
         Category::where('id', $category_id)->decrement('product_count',1);
         Subcategory::where('id', $subcategory_id)->decrement('product_count',1);
