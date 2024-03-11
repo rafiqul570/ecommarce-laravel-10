@@ -49,87 +49,117 @@
                       </h6>
                     </div>
 
+                    
                     <div class="row">
-                        <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Short Description :</label>
+                      <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Short Description :</label>
+                        <div class="col-sm-10 mg-t-10 mg-sm-t-0">
+                          <textarea name="short_description" id="summernote"></textarea>
+                        </div>
+                        <h6 class="col-sm-12 d-flex justify-content-center">
+                        <x-input-error :messages="$errors->get('short_description')" class="mt-2 " />
+                        </h6>
+                      </div>
+
+                      <div class="row">
+                        <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Long Description :</label>
                           <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                            <textarea name="short_description" id="" cols="86" rows="5"></textarea>
+                            <textarea name="long_description" id="summernote2"></textarea>
                           </div>
                           <h6 class="col-sm-12 d-flex justify-content-center">
-                          <x-input-error :messages="$errors->get('short_description')" class="mt-2 " />
+                          <x-input-error :messages="$errors->get('long_description')" class="mt-2 " />
                           </h6>
                         </div>
 
-                        <div class="row">
-                            <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Long Description :</label>
-                              <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                                <textarea name="long_description" id="" cols="86" rows="10"></textarea>
-                              </div>
-                              <h6 class="col-sm-12 d-flex justify-content-center">
-                              <x-input-error :messages="$errors->get('long_description')" class="mt-2 " />
-                              </h6>
-                            </div>
+                      <div class="row row-xs">
+                          <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Category :</label>
+                          <div class="col-sm-10 mg-t-10 mg-sm-t-0">
+                              <select class="form-control select2" name="category_id" data-placeholder="Choose one"
+                              data-parsley-class-handler="#slWrapper"
+                              data-parsley-errors-container="#slErrorContainer" required>
+                              <option selected>Choose Category</option>
+                              @foreach ($allCategory as $data)
+                              <option value="{{$data->id}}">{{$data->category_name}}</option>
+                              @endforeach
+                              </select>
+                          </div>
+                      </div><!-- row -->
 
-                            <div class="row row-xs">
-                                <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Category :</label>
-                                <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                                    <select class="form-control select2" name="category_id" data-placeholder="Choose one"
-                                    data-parsley-class-handler="#slWrapper"
-                                    data-parsley-errors-container="#slErrorContainer" required>
-                                    <option selected>Choose Category</option>
-                                    @foreach ($allCategory as $data)
-                                    <option value="{{$data->id}}">{{$data->category_name}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                            </div><!-- row -->
-
-                            <div class="row row-xs">
-                              <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Subcategory :</label>
-                              <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                                  <select class="form-control select2 mt-2" name="subcategory_id" data-placeholder="Choose one"
-                                  data-parsley-class-handler="#slWrapper"
-                                  data-parsley-errors-container="#slErrorContainer" required>
-                                  <option selected>Choose Category</option>
-                                  @foreach ($allSubcategory as $data)
-                                  <option value="{{$data->id}}">{{$data->subcategory_name}}</option>
-                                  @endforeach
-                                  </select>
-                              </div>
-                           </div><!-- row -->
-
-                                    
-                          <div class="row">
-                            <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Upload Image :</label>
-                              <div class="col-sm-10 mg-t-10 mg-sm-t-0 mt-2">
-                                <input type="file" name="product_img" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                              </div>
-                              <h6 class="col-sm-12 d-flex justify-content-center">
-                              <x-input-error :messages="$errors->get('product_img')" class="mt-2 " />
-                              </h6>
-                            </div>
-
-                            <div class="row row-xs mg-t-30">
-                                <div class="col-sm-12 d-flex justify-content-end">
-                                <div class="form-layout-footer">
-                                    <button class="btn btn-light mg-r-5">Add Product</button>
-                                </div><!-- form-layout-footer -->
-                                </div><!-- col-8 -->
-                            </div>
-                        </form>
-                        </div><!-- card -->
+                      <div class="row row-xs">
+                        <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Subcategory :</label>
+                        <div class="col-sm-10 mg-t-10 mg-sm-t-0">
+                            <select class="form-control select2 mt-2" name="subcategory_id" data-placeholder="Choose one"
+                            data-parsley-class-handler="#slWrapper"
+                            data-parsley-errors-container="#slErrorContainer" required>
+                            <option selected>Choose Category</option>
+                            @foreach ($allSubcategory as $data)
+                            <option value="{{$data->id}}">{{$data->subcategory_name}}</option>
+                            @endforeach
+                            </select>
                         </div>
-                    </div>
+                      </div><!-- row -->
 
-                    <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+                      <div class="row">
+                        <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Product name :</label>
+                          <div class="col-sm-10 mg-t-10 mg-sm-t-0">
+                            <input type="file" name="product_img" class="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                          </div>
+                          <h6 class="col-sm-12 d-flex justify-content-center">
+                          <x-input-error :messages="$errors->get('product_img')" class="mt-2 " />
+                          </h6>
+                        </div>
+            
 
-                    <script>
-                        @if (Session::has('success'))
-                            toastr.success("{{Session::get('success')}}");
-                        @endif
-                    </script>
+                      <div class="row row-xs mg-t-30">
+                          <div class="col-sm-12 d-flex justify-content-end">
+                          <div class="form-layout-footer">
+                              <button class="btn btn-light mg-r-5">Add Product</button>
+                          </div><!-- form-layout-footer -->
+                          </div><!-- col-8 -->
+                      </div>
+                  </form>
+                  </div><!-- card -->
+                  </div>
+              </div>
 
-                    </body>
-                </html>
+              <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
-            @endsection
+              <script>
+                  @if (Session::has('success'))
+                      toastr.success("{{Session::get('success')}}");
+                  @endif
+              </script>
+
+              <script>
+                $(function(){
+                  'use strict';
+
+                  // Inline editor
+                  var editor = new MediumEditor('.editable');
+
+                  // Summernote editor
+                  $('#summernote').summernote({
+                    height: 150,
+                    tooltip: false
+                  })
+                });
+              </script>
+
+              <script>
+                $(function(){
+                  'use strict';
+
+                  // Inline editor
+                  var editor = new MediumEditor('.editable');
+
+                  // Summernote editor
+                  $('#summernote2').summernote({
+                    height: 150,
+                    tooltip: false
+                  })
+                });
+              </script>
+              </body>
+          </html>
+
+      @endsection

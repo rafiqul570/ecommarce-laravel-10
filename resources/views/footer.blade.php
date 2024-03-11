@@ -8,6 +8,8 @@
     <script src="{{asset('backend/lib/datatables-responsive/dataTables.responsive.js')}}"></script>
     <script src="{{asset('backend/lib/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('backend/lib/rickshaw/rickshaw.min.js')}}"></script>
+    <script src="{{asset('backend/lib/medium-editor/medium-editor.js')}}"></script>
+    <script src="{{asset('backend/lib/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{asset('backend/js/starlight.js')}}"></script>
     <script src="{{asset('backend/js/ResizeSensor.js')}}"></script>
     <script src="{{asset('backend/js/dashboard.js')}}"></script>
@@ -66,6 +68,20 @@
       select.insertBefore(newOption,select.firstChild);
 
     }
+  </script>
+  <script>
+    $(function(){
+      'use strict';
+
+      // Inline editor
+      var editor = new MediumEditor('.editable');
+
+      // Summernote editor
+      $('#summernote').summernote({
+        height: 150,
+        tooltip: false
+      })
+    });
   </script>
   </body>
 </html>
