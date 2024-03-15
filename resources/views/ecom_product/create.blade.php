@@ -52,19 +52,19 @@
                     
                     <div class="row">
                       <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Short Description :</label>
-                        <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                          <textarea name="short_description" id="summernote"></textarea>
-                        </div>
-                        <h6 class="col-sm-12 d-flex justify-content-center">
+                         <div class="col-sm-10 mg-t-10 mg-sm-t-0">
+                          <textarea class="col-sm-12" name="short_description" id="summernote"></textarea>
+                          </div>
+                          <h6 class="col-sm-12 d-flex justify-content-center">
                         <x-input-error :messages="$errors->get('short_description')" class="mt-2 " />
                         </h6>
                       </div>
 
                       <div class="row">
                         <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Long Description :</label>
-                          <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                            <textarea name="long_description" id="summernote2"></textarea>
-                          </div>
+                         <div class="col-sm-10 mg-t-10 mg-sm-t-0">
+                          <textarea class="col-sm-12" name="long_description" id="summernote2" ></textarea>
+                         </div>
                           <h6 class="col-sm-12 d-flex justify-content-center">
                           <x-input-error :messages="$errors->get('long_description')" class="mt-2 " />
                           </h6>
@@ -139,7 +139,7 @@
 
                   // Summernote editor
                   $('#summernote').summernote({
-                    height: 150,
+                    height: 100,
                     tooltip: false
                   })
                 });
@@ -154,7 +154,7 @@
 
                   // Summernote editor
                   $('#summernote2').summernote({
-                    height: 150,
+                    height: 100,
                     tooltip: false
                   })
                 });

@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    // home page
+
+    public function home(){
+        return view('home.home_page');
+    }
+    
+    
+    // Role
     public function index(){
         $role = Auth::user()->role;
         if($role == '1'){
@@ -17,4 +25,6 @@ class HomeController extends Controller
 
 
     }
+
+    
 }

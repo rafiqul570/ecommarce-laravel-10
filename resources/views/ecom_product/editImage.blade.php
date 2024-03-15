@@ -14,7 +14,7 @@
      <div class="col-md-12">
        <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
        <div class="d-flex justify-content-between">
-          <h3 class="text-dark pb-3">Edit New Product</h3>
+          <h3 class="text-dark pb-3">Image Update</h3>
           <h5><a  href="{{route('ecom_product.index')}}" class="btn btn-light text-dark">All Product</a></h5>
           </div>
           <form action="{{route('ecom_product.updateImage')}}" method="POST" enctype="multipart/form-data">
@@ -23,19 +23,27 @@
             <input type="hidden" value="{{$product->id}}" name="id">
    
             <div class="row">
-                <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Upload Image :</label>
+                <label class="col-sm-2 form-control-label"><span class="tx-danger"></label>
                 <div class="col-sm-10 mg-t-10 mg-sm-t-0 mt-2">
-                    <img class="mb-3" src="{{asset('uploads/image/'.$product->product_img)}}" alt="" width="100">
-                    <input type="file" name="product_img" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    <img class="mb-3" src="{{asset('uploads/image/'.$product->product_img)}}" alt="" width="150">
                 </div>
                 <h6 class="col-sm-12 d-flex justify-content-center">
                 </h6>
                 </div>
 
+                <div class="row">
+                    <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Upload Image :</label>
+                    <div class="col-sm-10 mg-t-10 mg-sm-t-0 mt-2">
+                        <input type="file" name="product_img" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    </div>
+                    <h6 class="col-sm-12 d-flex justify-content-center">
+                    </h6>
+                    </div>
+
                 <div class="row row-xs mg-t-30">
                     <div class="col-sm-12 d-flex justify-content-end">
                     <div class="form-layout-footer">
-                        <button class="btn btn-light mg-r-5">Add Product</button>
+                        <button class="btn btn-light mg-r-5">Update Image</button>
                     </div><!-- form-layout-footer -->
                     </div><!-- col-8 -->
                 </div>
