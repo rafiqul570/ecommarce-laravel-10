@@ -216,7 +216,7 @@ button {
     float: left;
     background-image: url(../images/banner-bg.png);
     height: auto;
-    background-size: 170%;
+    background-size: 200%;
     background-repeat: no-repeat;
 }
 
@@ -573,6 +573,15 @@ a:hover {
     width: 100%;
     background-color: #ffffff;
     height: auto;
+    padding: 20px;
+    box-shadow: 0px 0 30px 10px #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.box_main_1 {
+    width: 100%;
+    background-color: #ffffff;
+    height: 500px;
     padding: 20px;
     box-shadow: 0px 0 30px 10px #f0f0f0;
     margin-bottom: 20px;

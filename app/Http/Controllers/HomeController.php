@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    // home page
 
-    public function home(){
-        return view('home.home_page');
-    }
-    
-    
     // Role
     public function index(){
         $role = Auth::user()->role;
@@ -24,6 +21,14 @@ class HomeController extends Controller
         }
 
 
+    }
+
+
+    // home page
+
+    public function home(){
+    $allProduct = Product::latest()->get();
+        return view('frontend.home_page', compact('allProduct'));
     }
 
     

@@ -1,3 +1,7 @@
+@php
+$allCategory = App\Models\Category::latest()->get();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -17,6 +21,7 @@
       <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/bootstrap.min.css')}}">
       <!-- style css -->
       <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/style.css')}}">
+      <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/custom.css')}}">
       <!-- Responsive-->
       <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
       <!-- fevicon -->
@@ -35,6 +40,9 @@
       <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
       <link rel="stylesoeet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+   
    </head>
    <body>
       <!-- banner bg main start -->
@@ -63,6 +71,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
+                     <a class="d-flex justify-content-end pt-2 text-light" href="{{route('login')}}">Sign in</a>
                      <div class="logo"><a href="index.html"><img src="{{asset('frontend/images/logo.png')}}"></a></div>
                   </div>
                </div>
@@ -76,18 +85,22 @@
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                      <a href="index.html">Home</a>
-                     <a href="fashion.html">Fashion</a>
-                     <a href="electronic.html">Electronic</a>
-                     <a href="jewellery.html">Jewellery</a>
+                     @foreach ($allCategory as $data)
+                     <a class="dropdown-item" href="{{$data->id}}">
+                        {{$data->category_name}}
+                     </a>
+                     @endforeach
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="{{asset('frontend/images/toggle-icon.png')}}"></span>
                   <div class="dropdown">
                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
                      </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        @foreach ($allCategory as $data)
+                        <a class="dropdown-item" href="{{$data->id}}">
+                           {{$data->category_name}}
+                        </a>
+                        @endforeach
                      </div>
                   </div>
                   <div class="main">
@@ -165,6 +178,11 @@
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
+      <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
       <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
       <script src="{{asset('frontend/js/popper.min.js')}}"></script>
       <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
