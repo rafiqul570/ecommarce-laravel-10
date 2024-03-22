@@ -24,12 +24,13 @@ class HomeController extends Controller
     }
 
 
-    // home page
-
-    public function home(){
-    $allProduct = Product::latest()->get();
-        return view('frontend.home_page', compact('allProduct'));
-    }
+      //dat show home page
+      public function homePage(){
+        $allCategory = Category::latest()->get();
+        $allSubcategory = Subcategory::latest()->get();
+        $allProduct = Product::latest()->get();
+        return view('frontend.homePage', compact('allCategory', 'allSubcategory', 'allProduct'));
+        }
 
     
 }

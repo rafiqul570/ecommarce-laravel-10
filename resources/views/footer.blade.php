@@ -14,7 +14,7 @@
     <script src="{{asset('backend/js/ResizeSensor.js')}}"></script>
     <script src="{{asset('backend/js/dashboard.js')}}"></script>
     <script src="{{asset('backend/js/main.js')}}"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
    <!-- Alert settimeout(Javascript) -->
     <script>
@@ -83,6 +83,106 @@
       })
     });
   </script>
+
+ 
+<!--AJAX -->
+
+ <script>
+
+  $(document).ready(function () {
+
+      
+
+      $('#category').on('change', function () {
+
+          var idCountry = this.value;
+
+          $("#state-dropdown").html('');
+
+          $.ajax({
+
+              url: "{{url('api/fetch-states')}}",
+
+              type: "POST",
+
+              data: {
+
+                  country_id: idCountry,
+
+                  _token: '{{csrf_token()}}'
+
+              },
+
+              dataType: 'json',
+
+              success: function (result) {
+
+                  $('#state-dropdown').html('<option value="">-- Select State --</option>');
+
+                  $.each(result.states, function (key, value) {
+
+                      $("#state-dropdown").append('<option value="' + value
+
+                          .id + '">' + value.name + '</option>');
+
+                  });
+
+                  $('#city-dropdown').html('<option value="">-- Select City --</option>');
+
+              }
+
+          });
+
+      });
+
+
+    // subcategory
+
+      $('#state-dropdown').on('change', function () {
+
+          var idState = this.value;
+
+          $("#city-dropdown").html('');
+
+          $.ajax({
+
+              url: "{{url('api/fetch-cities')}}",
+
+              type: "POST",
+
+              data: {
+
+                  state_id: idState,
+
+                  _token: '{{csrf_token()}}'
+
+              },
+
+              dataType: 'json',
+
+              success: function (res) {
+
+                  $('#city-dropdown').html('<option value="">-- Select City --</option>');
+
+                  $.each(res.cities, function (key, value) {
+
+                      $("#city-dropdown").append('<option value="' + value
+
+                          .id + '">' + value.name + '</option>');
+
+                  });
+
+              }
+
+          });
+
+      });
+
+
+
+  });
+
+</script>
   </body>
 </html>
 

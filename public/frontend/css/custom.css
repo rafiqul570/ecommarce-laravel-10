@@ -1,8 +1,92 @@
-.carousel-img img{
-    height: 480px;
+.hero__categories{
+    height: 500px;
+    border-radius: 1cm;
+    
+}
+.img1{
+    height: 450px;
+    padding: 20px;
 }
 
-.card{
-    width: 100%;
-
+.hero__categories .deparment{
+    color: #ffffff;
+    background: rgb(119, 162, 32);
+    text-align: center;
+    border-radius: 1.5cm;
+    padding-bottom: 10px;
 }
+
+nav{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    }
+    
+   .hero__categories ul li{
+        position: relative;
+        list-style-type: none;
+        width: 300px;
+    }
+    
+   .hero__categories ul ul{
+        position: absolute;
+        left: 300px;
+        width: 310px;
+        top: 0;
+        background-color: #ffffff;
+        box-shadow: 0px 0 30px 10px #f0f0f0;
+        padding-left: 10px;
+        z-index: 1;
+        display: none;
+    }
+    
+  .hero__categories ul li a{
+        display: flex;
+        height: 40px;
+        font-size: 16px;
+        padding: 10px;
+    
+    }
+    
+    .hero__categories ul li a:hover{
+        background: #f0f0f0;
+        color: crimson;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    .hero__categories ul li span{
+        position: absolute;
+        left: 280px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    
+   .hero__categories ul .dropdown{
+        position: relative;
+    }
+    
+   .hero__categories ul .dropdown:hover ul{
+       display: initial;
+      
+    }
+
+
+    @media only screen and (max-width: 678px) {
+        .header__top__right__social {
+            display: none;
+        }
+    }
+
+    .card1{
+        height: 300px;
+        margin-bottom: 50px;
+    }
+
+    .card1 .mig1{
+        width: 200px;
+        height: 250px;
+        display: block;
+        margin: auto;
+        padding:10px;
+    }

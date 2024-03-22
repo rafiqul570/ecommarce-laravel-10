@@ -1,204 +1,266 @@
 @php
-$allCategory = App\Models\Category::latest()->get();
+  $allCategory = App\Models\Category::latest()->get();   
+  $allSubcategory = App\Models\Subcategory::latest()->get();   
+  $allProduct = App\Models\Product::latest()->get();   
 @endphp
-
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Eflyer</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/bootstrap.min.css')}}">
-      <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/style.css')}}">
-      <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/custom.css')}}">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
-      <!-- fevicon -->
-      <link rel="icon" href="{{asset('frontend/images/fevicon.png" type="image/gif')}}">
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="{{asset('frontend/css/jquery.mCustomScrollbar.min.css')}}">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-      <!-- font awesome -->
-      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <!--  -->
-      <!-- owl stylesheets -->
-      <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-      <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
-      <link rel="stylesoeet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-   
-   </head>
-   <body>
-      <!-- banner bg main start -->
-      <div class="banner_bg_main">
-         <!-- header top section start -->
-         <div class="container">
-            <div class="header_section_top">
-               <div class="row">
-                  <div class="col-sm-12">
-                     <div class="custom_menu">
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ecommerce</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/nice-select.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><img src="img/logo.png" alt=""></a>
+        </div>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__language">
+                <img src="img/language.png" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">Spanis</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>
+            <div class="header__top__right__auth">
+                <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                @foreach($allCategory as $data)
+                <li>
+                    <a href="{{route('frontend.categoryPage',[$data->id, $data->slug]) }}">{{$data->category_name}}</a>
+                </li>
+                @endforeach
+              </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <img src="img/language.png" alt="">
+                                <div>English</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                            <div class="header__top__right__auth">
+                                <a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="{{route('frontend.homePage')}}"><img src="{{asset('frontend/img/logo.png')}}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
                         <ul>
-                           <li><a href="#">Best Sellers</a></li>
-                           <li><a href="#">Gift Ideas</a></li>
-                           <li><a href="#">New Releases</a></li>
-                           <li><a href="#">Today's Deals</a></li>
-                           <li><a href="#">Customer Service</a></li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- header top section start -->
-         <!-- logo section start -->
-         <div class="logo_section">
-            <div class="container">
-               <div class="row">
-                  <div class="col-sm-12">
-                     <a class="d-flex justify-content-end pt-2 text-light" href="{{route('login')}}">Sign in</a>
-                     <div class="logo"><a href="index.html"><img src="{{asset('frontend/images/logo.png')}}"></a></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- logo section end -->
-         <!-- header section start -->
-         <div class="header_section">
-            <div class="container">
-               <div class="containt_main">
-                  <div id="mySidenav" class="sidenav">
-                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">Home</a>
-                     @foreach ($allCategory as $data)
-                     <a class="dropdown-item" href="{{$data->id}}">
-                        {{$data->category_name}}
-                     </a>
-                     @endforeach
-                  </div>
-                  <span class="toggle_icon" onclick="openNav()"><img src="{{asset('frontend/images/toggle-icon.png')}}"></span>
-                  <div class="dropdown">
-                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @foreach ($allCategory as $data)
-                        <a class="dropdown-item" href="{{$data->id}}">
-                           {{$data->category_name}}
-                        </a>
+                          @foreach($allCategory as $data)
+                          <li>
+                            <a href="{{route('frontend.categoryPage',[$data->id, $data->slug] )}}">{{$data->category_name}}</a>
+                        </li>
                         @endforeach
-                     </div>
-                  </div>
-                  <div class="main">
-                     <!-- Another variation with a button -->
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
-                        <div class="input-group-append">
-                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
-                           <i class="fa fa-search"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="header_box">
-                     <div class="lang_box ">
-                        <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                        <img src="images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
-                        </a>
-                        <div class="dropdown-menu ">
-                           <a href="#" class="dropdown-item">
-                           <img src="{{asset('frontend/images/flag-france.png')}}" class="mr-2" alt="flag">
-                           French
-                           </a>
-                        </div>
-                     </div>
-                     <div class="login_menu">
-                        <ul>
-                           <li><a href="#">
-                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
-                           <li><a href="#">
-                              <i class="fa fa-user" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
                         </ul>
-                     </div>
-                  </div>
-               </div>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i> <span>2</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        </ul>
+                        <div class="header__cart__price"></div>
+                    </div>
+                </div>
             </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+   <section class="hero">
+    <div class="container">
+       <div class="row d-flex justify-content-center">
+          <div class="hero__search">
+             <div class="hero__search__form">
+                 <form action="#">
+                     <input type="text" placeholder="What do yo u need?">
+                     <button type="submit" class="site-btn">SEARCH</button>
+                 </form>
+             </div>
+             <div class="hero__search__phone">
+                 <div class="hero__search__phone__icon">
+                     <i class="fa fa-phone"></i>
+                 </div>
+                 <div class="hero__search__phone__text">
+                     <h5>+65 11.188.888</h5>
+                     <span>support 24/7 time</span>
+                 </div>
+             </div>
          </div>
-         <!-- header section end -->
+       </div>
          
          {{-- Main Content --}}
          <div class="container py-5">
             @yield('content')
          </div>
 
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="footer_logo"><a href="index.html"><img src="{{asset('frontend/images/footer-logo.png')}}"></a></div>
-            <div class="input_bt">
-               <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
-               <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
-            </div>
-            <div class="footer_menu">
-               <ul>
-                  <li><a href="#">Best Sellers</a></li>
-                  <li><a href="#">Gift Ideas</a></li>
-                  <li><a href="#">New Releases</a></li>
-                  <li><a href="#">Today Deals</a></li>
-                  <li><a href="#">Customer Service</a></li>
-               </ul>
-            </div>
-            <div class="location_main">Help Line  Number : <a href="#">+1 1800 1200 1200</a></div>
-         </div>
-      </div>
-      <!-- footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-         <div class="container">
-            <p class="copyright_text">© 2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-         </div>
-      </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-      <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
-      <script src="{{asset('frontend/js/popper.min.js')}}"></script>
-      <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
-      <script src="{{asset('frontend/js/jquery-3.0.0.min.js')}}"></script>
-      <script src="{{asset('frontend/js/plugin.js')}}"></script>
-      <!-- sidebar -->
-      <script src="{{asset('frontend/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-      <script src="{{asset('frontend/js/custom.js')}}"></script>
-      <script>
-         function openNav() {
-           document.getElementById("mySidenav").style.width = "250px";
-         }
-         
-         function closeNav() {
-           document.getElementById("mySidenav").style.width = "0";
-         }
-      </script>
-   </body>
+  <!-- Footer Section Begin -->
+  <footer class="footer spad">
+   <div class="container">
+       <div class="row">
+           <div class="col-lg-3 col-md-6 col-sm-6">
+               <div class="footer__about">
+                   <div class="footer__about__logo">
+                       <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                   </div>
+                   <ul>
+                       <li>Address: 60-49 Road 11378 New York</li>
+                       <li>Phone: +65 11.188.888</li>
+                       <li>Email: hello@colorlib.com</li>
+                   </ul>
+               </div>
+           </div>
+           <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+               <div class="footer__widget">
+                   <h6>Useful Links</h6>
+                   <ul>
+                       <li><a href="#">About Us</a></li>
+                       <li><a href="#">About Our Shop</a></li>
+                       <li><a href="#">Secure Shopping</a></li>
+                       <li><a href="#">Delivery infomation</a></li>
+                       <li><a href="#">Privacy Policy</a></li>
+                       <li><a href="#">Our Sitemap</a></li>
+                   </ul>
+                   <ul>
+                       <li><a href="#">Who We Are</a></li>
+                       <li><a href="#">Our Services</a></li>
+                       <li><a href="#">Projects</a></li>
+                       <li><a href="#">Contact</a></li>
+                       <li><a href="#">Innovation</a></li>
+                       <li><a href="#">Testimonials</a></li>
+                   </ul>
+               </div>
+           </div>
+           <div class="col-lg-4 col-md-12">
+               <div class="footer__widget">
+                   <h6>Join Our Newsletter Now</h6>
+                   <p>Get E-mail updates about our latest shop and special offers.</p>
+                   <form action="#">
+                       <input type="text" placeholder="Enter your mail">
+                       <button type="submit" class="site-btn">Subscribe</button>
+                   </form>
+                   <div class="footer__widget__social">
+                       <a href="#"><i class="fa fa-facebook"></i></a>
+                       <a href="#"><i class="fa fa-instagram"></i></a>
+                       <a href="#"><i class="fa fa-twitter"></i></a>
+                       <a href="#"><i class="fa fa-pinterest"></i></a>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-lg-12">
+               <div class="footer__copyright">
+                   <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                   <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+               </div>
+           </div>
+       </div>
+   </div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{asset('frontend/js/jquery-ui.min.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.slicknav.js')}}"></script>
+<script src="{{asset('frontend/js/mixitup.min.js')}}"></script>
+<script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('frontend/js/main.js')}}"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</body>
 </html>

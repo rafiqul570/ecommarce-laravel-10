@@ -6,23 +6,33 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ClaintController;
 use Illuminate\Support\Facades\Route;
 
 
+//frontend/Home Pages
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/', 'homePage')->name('frontend.homePage');   
+});
 
-    Route::controller(HomeController::class)->group(function(){
-        Route::get('/', 'home')->name('home');
-        
-    });
+//Frontend/Category Pages
+Route::controller(ClaintController::class)->group(function(){
+    Route::get('/frontend/categoryPage/{id}/{slug}', 'CategoryPage')->name('frontend.categoryPage');
+    Route::get('/frontend/subcategoryPage/{id}/{slug}', 'SubcategoryPage')->name('frontend.subcategoryPage');
+    Route::get('/frontend/singlePage/{id}/{slug}', 'SinglePage')->name('frontend.singlePage');
+    
+});
 
-
-
+// Bakent/Role
 Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function(){
         Route::get('/redirects', 'index')->name('redirects');
         
     });
 });
+
+
+
 
 
 // Category
@@ -63,20 +73,23 @@ Route::middleware('auth')->group(function () {
         Route::post('/ecom_product/updateImage/', 'updateImage')->name('ecom_product.updateImage');
         Route::get('/ecom_product/delete/{id}', 'delete')->name('ecom_product.delete');
 
+        // json data
+
+        Route::get('/get/subcat/{id}', 'getSubcat');
     });
 });
 
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
 require __DIR__.'/auth.php';

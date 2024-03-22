@@ -7,6 +7,7 @@ use App\Models\Subcategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use File;
+use DB;
 
 class ProductController extends Controller
 {
@@ -185,6 +186,13 @@ class ProductController extends Controller
         Category::where('id', $category_id)->decrement('product_count',1);
         Subcategory::where('id', $subcategory_id)->decrement('product_count',1);
         return back()->with('success', 'Success! data delete Successfully');
+    }
+
+    // JSON DATA
+
+    public function getSubcat($id){
+        $Subcategory = DB::table('subcategories')->where('category_id', $id)->get();
+        return response()->json($Subcategory);
     }
 }
 
