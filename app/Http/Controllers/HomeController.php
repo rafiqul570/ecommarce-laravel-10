@@ -17,7 +17,7 @@ class HomeController extends Controller
         if($role == '1'){
             return view('admin.dashboard');
         }else{
-            return view('user.dashboard');
+            return view('front.dashboard');
         }
 
 
@@ -27,9 +27,8 @@ class HomeController extends Controller
       //dat show home page
       public function homePage(){
         $allCategory = Category::latest()->get();
-        $allSubcategory = Subcategory::latest()->get();
         $allProduct = Product::latest()->get();
-        return view('frontend.homePage', compact('allCategory', 'allSubcategory', 'allProduct'));
+        return view('front.pages.homePage', compact('allCategory', 'allProduct'));
         }
 
     

@@ -3,7 +3,9 @@
 
   <!-- Session Status -->
   <x-auth-session-status class="mb-4" :status="session('status')" />
-<div class="signin-logo tx-center tx-24 tx-bold tx-inverse"><span class="tx-info tx-normal">Signin</span></div>
+<div class="signin-logo tx-center tx-24 tx-bold tx-inverse">
+    <a href="{{route('front.pages.homePage')}}"> <span class="tx-info tx-normal">Sign In</span></a>
+</div>
 <div class="tx-center mg-b-60"></div>
 
 <form method="POST" action="{{ route('login') }}">
@@ -47,6 +49,10 @@
             {{ __('Log in') }}
         </x-primary-button>
     </div>
+    <div class="flex items-center justify-end mt-4">
+    Do not have an account?
+    <a href="{{route('register')}}"> Register Now</a>
+</div>
 </form>
 
 @endsection

@@ -1,7 +1,9 @@
 @extends('auth.layouts.contact')
 @section('content')
 
-<div class="signin-logo tx-center tx-24 tx-bold tx-inverse"><span class="tx-info tx-normal">Sign Up</span></div>
+<div class="signin-logo tx-center tx-24 tx-bold tx-inverse">
+   <a href="{{route('front.pages.homePage')}}"> <span class="tx-info tx-normal">Sign Up</span></a>
+</div>
 <div class="tx-center mg-b-20"></div>
 
  <form method="POST" action="{{ route('register') }}">
@@ -12,6 +14,13 @@
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="form-control"  type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+         <!-- Email Address -->
+        <div class="form-group">
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Phone -->
@@ -46,7 +55,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Already registered? Login ') }}
             </a>
 
             <x-primary-button class="ml-4" style="cursor:pointer">

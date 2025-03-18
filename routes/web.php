@@ -3,81 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ClaintController;
 use Illuminate\Support\Facades\Route;
-
-
-//frontend/Home Pages
-Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'homePage')->name('frontend.homePage');   
-});
-
-//Frontend/Category Pages
-Route::controller(ClaintController::class)->group(function(){
-    Route::get('/frontend/categoryPage/{id}/{slug}', 'CategoryPage')->name('frontend.categoryPage');
-    Route::get('/frontend/subcategoryPage/{id}/{slug}', 'SubcategoryPage')->name('frontend.subcategoryPage');
-    Route::get('/frontend/singlePage/{id}/{slug}', 'SinglePage')->name('frontend.singlePage');
-    
-});
-
-// Bakent/Role
-Route::middleware('auth')->group(function () {
-    Route::controller(HomeController::class)->group(function(){
-        Route::get('/redirects', 'index')->name('redirects');
-        
-    });
-});
-
-
-
-
-
-// Category
-Route::middleware('auth')->group(function () {
-    Route::controller(CategoryController::class)->group(function(){
-        Route::get('/ecom_category/index', 'index')->name('ecom_category.index');
-        Route::get('/ecom_category/create', 'create')->name('ecom_category.create');
-        Route::post('/ecom_category/store', 'store')->name('ecom_category.store');
-        Route::get('/ecom_category/edit/{id}', 'edit')->name('ecom_category.edit');
-        Route::post('/ecom_category/update', 'update')->name('ecom_category.update');
-        Route::get('/ecom_category/delete/{id}', 'delete')->name('ecom_category.delete');
-
-    });
-});
-
-// Sub-Category
-Route::middleware('auth')->group(function () {
-    Route::controller(SubcategoryController::class)->group(function(){
-        Route::get('/ecom_subcategory/index', 'index')->name('ecom_subcategory.index');
-        Route::get('/ecom_subcategory/create', 'create')->name('ecom_subcategory.create');
-        Route::post('/ecom_subcategory/store', 'store')->name('ecom_subcategory.store');
-        Route::get('/ecom_subcategory/edit/{id}', 'edit')->name('ecom_subcategory.edit');
-        Route::post('/ecom_subcategory/update', 'update')->name('ecom_subcategory.update');
-        Route::get('/ecom_subcategory/delete/{id}', 'delete')->name('ecom_subcategory.delete');
-
-    });
-});
-
-// Product
-Route::middleware('auth')->group(function () {
-    Route::controller(ProductController::class)->group(function(){
-        Route::get('/ecom_product/index', 'index')->name('ecom_product.index');
-        Route::get('/ecom_product/create', 'create')->name('ecom_product.create');
-        Route::post('/ecom_product/store', 'store')->name('ecom_product.store');
-        Route::get('/ecom_product/edit/{id}', 'edit')->name('ecom_product.edit');
-        Route::post('/ecom_product/update/', 'update')->name('ecom_product.update');
-        Route::get('/ecom_product/editImage/{id}', 'editImage')->name('ecom_product.editImage');
-        Route::post('/ecom_product/updateImage/', 'updateImage')->name('ecom_product.updateImage');
-        Route::get('/ecom_product/delete/{id}', 'delete')->name('ecom_product.delete');
-
-        // json data
-
-        Route::get('/get/subcat/{id}', 'getSubcat');
-    });
-});
+use App\Models\User;
 
 
 
@@ -89,6 +20,102 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+//frontend/Home Pages
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/', 'homePage')->name('front.pages.homePage');   
+});
+
+
+
+// Bakent/Role
+Route::middleware('auth')->group(function () {
+    Route::controller(HomeController::class)->group(function(){
+        Route::get('/redirects', 'index')->name('redirects');
+        
+    });
+});
+
+
+//Frontend  Pages without middleware
+Route::controller(ClaintController::class)->group(function(){
+    Route::get('/front/pages/categoryPage/{id}/{slug}', 'CategoryPage')->name('front.pages.categoryPage');
+    Route::get('/front/pages/singlePage/{id}/{slug}', 'SinglePage')->name('front.pages.singlePage');
+    Route::get('/front/pages/newReleasePage/', 'NewReleasePage')->name('front.pages.newReleasePage');
+    
+});
+
+
+//Frontend/Pages with middleware
+Route::middleware('auth')->group(function () {
+Route::controller(ClaintController::class)->group(function(){
+    Route::get('/front/pages/addToCard', 'AddToCard')->name('front.pages.addToCard');
+    Route::post('/front/pages/addProductToCard', 'AddProductToCard')->name('front.pages.addProductToCard');
+    Route::get('/front/pages/checkout', 'Checkout')->name('front.pages.checkout');
+    Route::get('/front/pages/todaysDeal', 'TodaysDeal')->name('front.pages.todaysDeal');
+    Route::get('/front/pages/customService', 'CustomService')->name('front.pages.customService');
+   
+    
+   });
+
+});
+
+
+//Testing page
+Route::middleware('auth')->group(function () {
+Route::controller(ClaintController::class)->group(function(){
+    Route::get('/products', 'Index')->name('products');
+    Route::get('/cart', 'Cart')->name('cart');
+    Route::post('/remove-from-cart', 'RemoveFromCart')->name('remove.from.cart');
+    
+   
+    
+   });
+
+});
+
+//UserProfile
+Route::middleware('auth')->group(function () {
+Route::controller(ClaintController::class)->group(function(){
+    Route::get('/front/userProfile/dashboard', 'UserProfile')->name('front.userProfile.dashboard');
+    Route::get('/front/userProfile/history', 'History')->name('front.userProfile.history');
+    Route::get('/front/userProfile/pendingOrders', 'PendingOrders')->name('front.userProfile.pendingOrders');
+    
+   });
+
+});
+
+
+// Category
+Route::middleware('auth')->group(function () {
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/admin/category/index', 'index')->name('admin.category.index');
+        Route::get('/admin/category/create', 'create')->name('admin.category.create');
+        Route::post('/admin/category/store', 'store')->name('admin.category.store');
+        Route::get('/admin/category/edit/{id}', 'edit')->name('admin.category.edit');
+        Route::post('/admin/category/update', 'update')->name('admin.category.update');
+        Route::get('/admin/category/delete/{id}', 'delete')->name('admin.category.delete');
+
+    });
+});
+
+
+
+// Product
+Route::middleware('auth')->group(function () {
+    Route::controller(ProductController::class)->group(function(){
+        Route::get('/admin/product/index', 'index')->name('admin.product.index');
+        Route::get('/admin/product/create', 'create')->name('admin.product.create');
+        Route::post('/admin/product/store', 'store')->name('admin.product.store');
+        Route::get('/admin/product/edit/{id}', 'edit')->name('admin.product.edit');
+        Route::post('/admin/product/update/', 'update')->name('admin.product.update');
+        Route::get('/admin/product/editImage/{id}', 'editImage')->name('admin.product.editImage');
+        Route::post('/admin/product/updateImage/', 'updateImage')->name('admin.product.updateImage');
+        Route::get('/admin/product/delete/{id}', 'delete')->name('admin.product.delete');
+
+    });
 });
 
 

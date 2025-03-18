@@ -3154,9 +3154,11 @@ ol {
 	}
 	.header__top {
 		display: none;
+	
 	}
 	.header__menu {
 		display: none;
+
 	}
 	.header__cart {
 		text-align: center;

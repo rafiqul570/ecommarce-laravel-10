@@ -1,4 +1,8 @@
 @extends('admin.layouts.template')
 @section('content')
-<h1>Admin Deshboard</h1>
+
+
+<h1>Wellcome {{ Auth::user()->name }}</h1>
+
+
 @endsection

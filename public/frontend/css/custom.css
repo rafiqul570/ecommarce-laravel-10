@@ -1,12 +1,35 @@
-.hero__categories{
-    height: 500px;
-    border-radius: 1cm;
-    
+.header__logo img{
+    width: 150px;
+    height: 50px;
 }
-.img1{
-    height: 450px;
+
+
+#slaider img{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+   
+}
+
+#home .card{
+    height: 100%;
+    width: 100%;
     padding: 20px;
+    overflow: hidden;
 }
+
+#home img{
+    height: 100%;
+    width: 100%;
+    
+
+}
+
+#home a{
+    text-decoration: none;
+
+}
+
 
 .hero__categories .deparment{
     color: #ffffff;
@@ -21,6 +44,43 @@ nav{
     top: 0;
     bottom: 0;
     }
+
+#nav a{
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 18px !important;
+
+
+}
+
+#nav a:hover{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+
+}
+
+#pages{
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 18px !important;
+  font-weight: bold;
+  letter-spacing: 2px;  
+}
+
+#pages:hover{
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold; 
+}
+
+
+#header__menu{
+    width: 100%;
+    background: #7fad39;
+    
+    
+}
     
    .hero__categories ul li{
         position: relative;
@@ -45,14 +105,15 @@ nav{
         height: 40px;
         font-size: 16px;
         padding: 10px;
+        text-decoration: none;
     
     }
     
     .hero__categories ul li a:hover{
-        background: #f0f0f0;
         color: crimson;
         font-size: 16px;
         font-weight: bold;
+        text-transform: uppercase;
     }
     
     .hero__categories ul li span{
@@ -78,15 +139,22 @@ nav{
         }
     }
 
-    .card1{
-        height: 300px;
-        margin-bottom: 50px;
+    #single_card{
+        padding: 20px;
     }
 
-    .card1 .mig1{
-        width: 200px;
-        height: 250px;
-        display: block;
-        margin: auto;
-        padding:10px;
+
+    #single_card img{
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+    }
+
+    #product-details h5{
+        line-height: 50px;
+
+    }
+
+     #product-details h6{
+        line-height: 50px;
     }

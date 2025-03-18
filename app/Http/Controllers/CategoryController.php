@@ -11,11 +11,11 @@ class CategoryController extends Controller
 {
      public function index(){
         $allCategory = Category::latest()->get();
-        return view('ecom_category.index', compact('allCategory'));
+        return view('admin.category.index', compact('allCategory'));
     }
 
     public function create(){
-        return view('ecom_category.create');
+        return view('admin.category.create');
     }
 
 
@@ -25,7 +25,7 @@ class CategoryController extends Controller
             'category_name' => 'required|unique:categories',
         ]);
 
-        Category::create([
+        Category::insert([
             'category_name' => $request->category_name,
             'slug' => strtolower(str_replace( '', '-', $request->category_name))
         ]);
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function edit($id){
         $editCategory = Category::FindOrFail($id);
 
-        return view('ecom_category.edit', compact('editCategory'));
+        return view('admin.category.edit', compact('editCategory'));
 
     }
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         ]);
 
 
-        return redirect()->route('ecom_category.index')->with('success', 'Success! data update Successfully');
+        return redirect()->route('admin.category.index')->with('success', 'Success! data update Successfully');
 
     }
 

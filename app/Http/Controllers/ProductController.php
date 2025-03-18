@@ -14,13 +14,12 @@ class ProductController extends Controller
    
     public function index(){
         $allProduct = Product::latest()->get();
-        return view('ecom_product.index', compact('allProduct'));
+        return view('admin.product.index', compact('allProduct'));
     }
 
     public function create(){
         $allCategory = Category::latest()->get();
-        $allSubcategory = Subcategory::latest()->get();
-        return view('ecom_product.create',compact('allCategory', 'allSubcategory'));
+        return view('admin.product.create',compact('allCategory'));
     }
 
 
@@ -31,7 +30,6 @@ class ProductController extends Controller
             'product_price' => 'required',
             'product_quantity' => 'required',
             'category_id' => 'required',
-            'subcategory_id' => 'required',
             'short_description' => 'required',
             'long_description' => 'required',
             'product_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg}max:2048',
@@ -50,24 +48,21 @@ class ProductController extends Controller
             $subcategory_id = $request->subcategory_id;
             
             $category_name = Category::where('id', $category_id)->value('category_name');
-            $subcategory_name = Subcategory::where('id', $subcategory_id)->value('subcategory_name');
+           
 
-        Product::create([
+        Product::insert([
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
             'product_quantity' => $request->product_quantity,
             'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
             'category_name' => $category_name,
-            'subcategory_name' => $subcategory_name,
             'product_img' => $image_name,
             'slug' => strtolower(str_replace( ' ', '-', $request->product_name)),
         ]);
 
              Category::where('id', $category_id)->increment('product_count',1);
-             Subcategory::where('id', $subcategory_id)->increment('product_count',1);
 
 
         return back()->with('success', 'Success! data insert Successfully');
@@ -76,13 +71,13 @@ class ProductController extends Controller
 
     public function edit($id){
         $product = Product::FindOrFail($id);
-        return view('ecom_product.edit', compact('product'));
+        return view('admin.product.edit', compact('product'));
 
     }
 
     public function editImage($id){
         $product = Product::FindOrFail($id);
-        return view('ecom_product.editImage', compact('product'));
+        return view('admin.product.editImage', compact('product'));
 
     }
 
@@ -118,7 +113,7 @@ class ProductController extends Controller
     ]);
 
 
-    return redirect()->route('ecom_product.index')->with('success', 'Success! data update Successfully');
+    return redirect()->route('admin.product.index')->with('success', 'Success! data update Successfully');
 
 }
 
@@ -165,15 +160,13 @@ class ProductController extends Controller
         ]);
 
 
-        return redirect()->route('ecom_product.index')->with('success', 'Success! data update Successfully');
+        return redirect()->route('admin.product.index')->with('success', 'Success! data update Successfully');
 
     }
 
     //Delete
     public function delete($id){
         $category_id = Product::where('id', $id)->value('category_id');
-        $subcategory_id = Product::where('id', $id)->value('subcategory_id');
-
         $product = Product::FindOrFail($id);
         
         $image = 'uploads/image/'.$product->product_img;
@@ -184,15 +177,9 @@ class ProductController extends Controller
         $product->delete();
         
         Category::where('id', $category_id)->decrement('product_count',1);
-        Subcategory::where('id', $subcategory_id)->decrement('product_count',1);
         return back()->with('success', 'Success! data delete Successfully');
     }
 
-    // JSON DATA
-
-    public function getSubcat($id){
-        $Subcategory = DB::table('subcategories')->where('category_id', $id)->get();
-        return response()->json($Subcategory);
-    }
+    
 }
 

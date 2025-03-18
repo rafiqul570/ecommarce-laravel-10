@@ -12276,7 +12276,7 @@ textarea.parsley-success:focus {
   border-radius: 0;
   display: flex;
   align-items: center;
-  margin-bottom: 0;
+  margin-top: -30px;
   padding-left: 23px;
 }
 .sl-breadcrumb .breadcrumb-item {
