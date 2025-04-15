@@ -21,12 +21,12 @@ class ClaintController extends Controller
     }
 
 
-    public function SinglePage($id){
+    public function SingleProduct($id){
 
         $product = Product::FindOrFail($id);
         $category_id = Product::where('id', $id)->value('category_id');
         $related_product = Product::where('category_id', $category_id)->latest()->get();
-        return view('front.pages.singlePage', compact('product', 'related_product'));
+        return view('front.pages.singleProduct', compact('product', 'related_product'));
 
     }
 

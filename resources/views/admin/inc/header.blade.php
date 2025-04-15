@@ -29,6 +29,8 @@
     <meta name="author" content="ThemePixels">
     <title>ECOMMERCE</title>
 
+    <!-- Summernote CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
     <!-- vendor css -->
     <link href="{{asset('backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('backend/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
@@ -68,7 +70,7 @@
         if($role == '1'){
         ?>
 
-         <a href="../index.php" target="_blank" class="sl-menu-link">
+         <a href="{{route('homePage')}}" target="_blank" class="sl-menu-link">
           <div class="sl-menu-item">
             <span class="menu-item-label">Visite Site</span>
           </div><!-- menu-item -->

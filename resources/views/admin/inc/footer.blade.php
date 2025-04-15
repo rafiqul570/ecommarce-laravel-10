@@ -15,6 +15,7 @@
     <script src="{{asset('backend/js/dashboard.js')}}"></script>
     <script src="{{asset('backend/js/main.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
 
    <!-- Alert settimeout(Javascript) -->
     <script>
@@ -36,19 +37,13 @@
       });
     </script>
 
-
-  <script>
-    $(function(){
-      'use strict';
-
-      // Inline editor
-      var editor = new MediumEditor('.editable');
-
-      // Summernote editor
-      $('#summernote').summernote({
-        height: 150,
-        tooltip: false
-      })
+    <script>
+    $(document).ready(function() {
+      $('#description').summernote({
+        placeholder: 'Enter product description...',
+        tabsize: 2,
+        height: 200
+      });
     });
   </script>
 

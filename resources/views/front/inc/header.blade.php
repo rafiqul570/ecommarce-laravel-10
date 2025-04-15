@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/nice-select.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('frontend/css/jquery-ui.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('frontend/css/jquery.exzoom.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('frontend/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}" type="text/css">
@@ -133,7 +134,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="{{route('front.pages.homePage')}}"><img src="{{asset('frontend/img/logo2.png')}}" alt=""></a>
+                        <a href="{{route('homePage')}}"><img src="{{asset('frontend/img/logo2.png')}}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">

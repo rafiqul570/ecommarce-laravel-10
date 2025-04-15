@@ -14,7 +14,7 @@
     <div class="card pd-20 pd-sm-40 form-layout form-layout-5">
       <div class="d-flex justify-content-between">
         <h3 class="text-dark pb-3">All Product</h3>
-        <h5><a  href="{{route('admin.product.create')}}" class="btn btn-info text-light">Add Product</a></h5>
+        <h5 class="mb-3"><a  href="{{route('admin.product.create')}}" class="btn btn-info text-light">Add Product</a></h5>
       </div>
         
          <div class="table-responsive">
@@ -22,8 +22,8 @@
              <thead>
                <tr>
                  <th class="wd-10p">SL</th>
-                 <th class="wd-25p">Product Name</th>
-                 <th class="wd-15p">Image</th>
+                 <th class="wd-50p">Product Name</th>
+                 <th class="wd-25p">Image</th>
                  <th class="wd-15p">action</th>
                </tr>
              </thead>

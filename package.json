@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@zeitiger/elevatezoom": "^2.5.4",
         "summernote": "^0.9.1"
     }
 }

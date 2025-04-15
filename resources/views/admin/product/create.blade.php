@@ -20,7 +20,7 @@
           <div class="col-lg-12">
             <div class="form-group">
               <label class="form-control-label">Product price</label>
-              <input class="form-control" type="text" name="product_price" placeholder="">
+              <input class="form-control" type="number" name="product_price" placeholder="">
             </div>
             <h6 class="col-sm-12 d-flex justify-content-center">
                <x-input-error :messages="$errors->get('product_price')" class="mt-2 " />
@@ -30,7 +30,7 @@
           <div class="col-lg-12">
             <div class="form-group">
               <label class="form-control-label">Quantity</label>
-              <input class="form-control" type="text" name="product_quantity" placeholder="">
+              <input class="form-control" type="number" name="product_quantity" placeholder="">
             </div>
             <h6 class="col-sm-12 d-flex justify-content-center">
                <x-input-error :messages="$errors->get('product_quantity')" class="mt-2 " />
@@ -40,7 +40,7 @@
           <div class="col-lg-12">
             <div class="form-group">
               <label class="form-control-label">Short Description</label>
-              <textarea  rows="4" class="form-control" name="short_description" placeholder="Text here" id="floatingTextarea"></textarea>
+              <textarea  rows="4" class="form-control" name="short_description" placeholder="Enter product short description" ></textarea>
             </div>
             <h6 class="col-sm-12 d-flex justify-content-center">
                <x-input-error :messages="$errors->get('short_description')" class="mt-2 " />
@@ -50,7 +50,7 @@
           <div class="col-lg-12">
             <div class="form-group">
               <label class="form-control-label">Long Description</label>
-              <textarea  rows="10" class="form-control" name="long_description" placeholder="Text here" id="floatingTextarea"></textarea>
+              <textarea  rows="10" class="form-control" name="long_description" placeholder="" id="description"></textarea>
             </div>
             <h6 class="col-sm-12 d-flex justify-content-center">
                <x-input-error :messages="$errors->get('long_description')" class="mt-2 " />
@@ -71,9 +71,26 @@
             </div>
           </div><!-- col-12 -->
 
+          <!-- <div class="col-lg-12">
+            <div class="form-group mg-b-10-force">
+              <label class="form-control-label">Image Color</label>
+              <select class="form-control select2" name="product_color" data-placeholder="Choose one"
+              data-parsley-class-handler="#slWrapper"
+              data-parsley-errors-container="#slErrorContainer" required>
+              <option selected="" disabled="">Select Color</option>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+              <option value="Red">Red</option>
+              <option value="Blue">Blue</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Multi-color">Multi color</option>
+              </select>
+            </div>
+          </div> --><!-- col-12 -->
+
           <div class="col-lg-12">
             <div class="form-group">
-              <label class="form-control-label">Image Upload</label>
+              <label class="form-control-label">Upload Product Image</label>
               <input class="form-control" type="file" name="product_img" value="John Paul" placeholder="Enter firstname">
             </div>
             <h6 class="col-sm-12 d-flex justify-content-center">

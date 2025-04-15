@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
 //frontend/Home Pages
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'homePage')->name('front.pages.homePage');   
+    Route::get('/', 'homePage')->name('homePage');   
 });
 
 
@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 //Frontend  Pages without middleware
 Route::controller(ClaintController::class)->group(function(){
     Route::get('/front/pages/categoryPage/{id}/{slug}', 'CategoryPage')->name('front.pages.categoryPage');
-    Route::get('/front/pages/singlePage/{id}/{slug}', 'SinglePage')->name('front.pages.singlePage');
+    Route::get('/front/pages/singleProduct/{id}/{slug}', 'SingleProduct')->name('front.pages.singleProduct');
     Route::get('/front/pages/newReleasePage/', 'NewReleasePage')->name('front.pages.newReleasePage');
     
 });

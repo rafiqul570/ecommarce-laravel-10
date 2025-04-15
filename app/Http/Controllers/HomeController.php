@@ -28,7 +28,7 @@ class HomeController extends Controller
       public function homePage(){
         $allCategory = Category::latest()->get();
         $allProduct = Product::latest()->get();
-        return view('front.pages.homePage', compact('allCategory', 'allProduct'));
+        return view('homePage', compact('allCategory', 'allProduct'));
         }
 
     

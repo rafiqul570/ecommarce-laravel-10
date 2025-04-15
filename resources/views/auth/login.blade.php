@@ -4,7 +4,7 @@
   <!-- Session Status -->
   <x-auth-session-status class="mb-4" :status="session('status')" />
 <div class="signin-logo tx-center tx-24 tx-bold tx-inverse">
-    <a href="{{route('front.pages.homePage')}}"> <span class="tx-info tx-normal">Sign In</span></a>
+    <a href="{{ route('login') }}"> <span class="tx-info tx-normal">Sign In</span></a>
 </div>
 <div class="tx-center mg-b-60"></div>
 

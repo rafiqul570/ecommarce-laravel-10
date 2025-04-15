@@ -15,9 +15,9 @@
        <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
        <div class="d-flex justify-content-between">
           <h3 class="text-dark pb-3">Image Update</h3>
-          <h5><a  href="{{route('admin.product.index')}}" class="btn btn-light text-dark">All Product</a></h5>
+          <h5><a href="{{route('admin.product.index')}}" class="btn btn-light text-dark">All Product</a></h5>
           </div>
-          <form action="{{route('adminproduct.updateImage')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{route('admin.product.updateImage')}}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <input type="hidden" value="{{$product->id}}" name="id">

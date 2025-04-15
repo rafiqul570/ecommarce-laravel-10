@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Subcategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use File;
@@ -45,7 +44,6 @@ class ProductController extends Controller
         }
             
             $category_id = $request->category_id;
-            $subcategory_id = $request->subcategory_id;
             
             $category_name = Category::where('id', $category_id)->value('category_name');
            

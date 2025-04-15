@@ -66,9 +66,11 @@
 <script src="{{asset('frontend/js/jquery.slicknav.js')}}"></script>
 <script src="{{asset('frontend/js/mixitup.min.js')}}"></script>
 <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.exzoom.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.elevateZoom.min.js')}}"></script>
 <script src="{{asset('frontend/js/main.js')}}"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/2.2.3/jquery.elevatezoom.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
