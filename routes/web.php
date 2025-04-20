@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ImageController;
@@ -100,6 +102,35 @@ Route::middleware('auth')->group(function () {
 
     });
 });
+
+
+// Color
+Route::middleware('auth')->group(function () {
+    Route::controller(ColorController::class)->group(function(){
+        Route::get('/admin/color/index', 'index')->name('admin.color.index');
+        Route::get('/admin/color/create', 'create')->name('admin.color.create');
+        Route::post('/admin/color/store', 'store')->name('admin.color.store');
+        Route::get('/admin/color/edit/{id}', 'edit')->name('admin.color.edit');
+        Route::post('/admin/color/update', 'update')->name('admin.color.update');
+        Route::get('/admin/color/delete/{id}', 'delete')->name('admin.color.delete');
+
+    });
+});
+
+
+// Size
+Route::middleware('auth')->group(function () {
+    Route::controller(SizeController::class)->group(function(){
+        Route::get('/admin/size/index', 'index')->name('admin.size.index');
+        Route::get('/admin/size/create', 'create')->name('admin.size.create');
+        Route::post('/admin/size/store', 'store')->name('admin.size.store');
+        Route::get('/admin/size/edit/{id}', 'edit')->name('admin.size.edit');
+        Route::post('/admin/size/update', 'update')->name('admin.size.update');
+        Route::get('/admin/size/delete/{id}', 'delete')->name('admin.size.delete');
+
+    });
+});
+
 
 
 

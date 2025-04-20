@@ -89,6 +89,28 @@
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
+            <span class="menu-item-label">Color</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div>
+        </a>
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{route('admin.color.create')}}" class="nav-link">Add Color</a></li>
+          <li class="nav-item"><a href="{{route('admin.color.index')}}" class="nav-link">All Color</a></li>
+        </ul>
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <span class="menu-item-label">Size</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div>
+        </a>
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{route('admin.size.create')}}" class="nav-link">Add Size</a></li>
+          <li class="nav-item"><a href="{{route('admin.size.index')}}" class="nav-link">All size</a></li>
+        </ul>
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
             <span class="menu-item-label">Product</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div>
@@ -142,7 +164,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-light-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div style="color: white;">{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -159,7 +181,7 @@
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+                          @csrf
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
@@ -173,6 +195,6 @@
         </nav>
       </div><!-- sl-header-right -->
     </div><!-- sl-header -->
-  <!-- ########## END: HEAD PANEL ########## -->
+ 
 
 

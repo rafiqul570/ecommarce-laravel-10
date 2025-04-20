@@ -14,27 +14,27 @@
      <div class="col-md-12">
        <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
        <div class="d-flex justify-content-between">
-          <h3 class="text-dark pb-3">Add New Category</h3>
-          <h5><a  href="{{route('admin.category.index')}}" class="btn btn-light text-dark">All Category</a></h5>
+          <h3 class="text-dark pb-3">Add New Color</h3>
+          <h5><a  href="{{route('admin.color.index')}}" class="btn btn-light text-dark">All Color</a></h5>
           </div>
-          <form action="{{route('admin.category.store')}}" method="POST">
+          <form action="{{route('admin.color.store')}}" method="POST">
             @csrf
             <div class="row mg-b-25">
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label class="form-group">Category name</label>
-                  <input class="form-control" type="text" name="category_name" placeholder="">
+                  <label class="form-group">Color name</label>
+                  <input class="form-control" type="text" name="color_name" placeholder="">
                 </div>
                 <h6 class="col-sm-12 d-flex justify-content-center">
-                   <x-input-error :messages="$errors->get('category_name')" class="mt-2 " />
+                   <x-input-error :messages="$errors->get('color_name')" class="mt-2 " />
                 </h6>
               </div>
             </div><!-- col-12 -->
-       
+
             <div class="row row-xs mg-t-30">
                 <div class="col-sm-12">
                   <div class="form-layout-footer">
-                    <button class="btn btn-light mg-r-5">Add Category</button>
+                    <button class="btn btn-light mg-r-5">Add Color</button>
                   </div><!-- form-layout-footer -->
                 </div><!-- col-8 -->
               </div>

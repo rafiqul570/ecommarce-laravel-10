@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Product;
-use App\Models\Card;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -24,20 +24,27 @@ class ClaintController extends Controller
     public function SingleProduct($id){
 
         $product = Product::FindOrFail($id);
-        $category_id = Product::where('id', $id)->value('category_id');
-        $related_product = Product::where('category_id', $category_id)->latest()->get();
+        //$category_id = Product::where('id', $id)->value('category_id');
+        $related_product = Product::where('category_id', $product->category_id)->take(6)->get();
         return view('front.pages.singleProduct', compact('product', 'related_product'));
 
     }
 
    public function AddProductToCard(Request $request){
+            // $product_price = $request->product_price;
+            // $quantity = $request->quantity;
+            // $price = $product_price * $quantity;
 
 
-        Card::insert([
-            'product_id' => $request->product_id,
+        Cart::insert([
+
             'user_id' => Auth::id(),
+            'product_id' => $request->product_id,
             'product_name' => $request->product_name,
+            // 'product_img' => $request->product_img,
             'product_price' => $request->product_price,
+            'product_color' => $request->product_color,
+            'product_size' => $request->product_size,
             'quantity' => $request->quantity,
             
         ]);
@@ -49,8 +56,8 @@ class ClaintController extends Controller
 
     public function AddToCard(){
 
-        $userid = Auth::id();
-        $cart_items = Card::where('user_id', $userid )->get();
+        $user_id = Auth::id();
+        $cart_items = Cart::where('user_id', $user_id )->get();
         
         return view('front.pages.addToCard', compact('cart_items'));
     }

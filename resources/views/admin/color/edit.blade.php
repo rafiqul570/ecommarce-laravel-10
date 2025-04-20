@@ -14,23 +14,23 @@
   <div class="col-md-12">
    <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
    <div class="d-flex justify-content-between">
-          <h3 class="text-dark pb-3">Edit Category</h3>
-          <h5><a  href="{{route('admin.category.index')}}" class="btn btn-light text-dark">All Category</a></h5>
+          <h3 class="text-dark pb-3">Edit Color</h3>
+          <h5><a  href="{{route('ecom_category.index')}}" class="btn btn-light text-dark">All Color</a></h5>
           </div>
-       <form action="{{route('admin.category.update') }}" method="POST">
+       <form action="{{route('admin.color.update') }}" method="POST">
           @csrf
 
           <input type="hidden" value="{{$editCategory->id}}" name="id">
 
           <div class="row row-xs mg-t-20">
-              <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Category name:</label>
+              <label class="col-sm-2 form-control-label"><span class="tx-danger">*</span> Color name:</label>
               <div class="col-sm-10 mg-t-10 mg-sm-t-0">
-                <input type="text" name="category_name" value="{{$editCategory->category_name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                <input type="text" name="color_name" value="{{$editColor->color_name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
               </div>
             </div>
 
             <div class="row row-xs mg-t-30">
-                <div class="col-sm-12 d-flex justify-content-end">
+                <div class="col-sm-12">
                   <div class="form-layout-footer">
                     <button class="btn btn-light mg-r-5">Update</button>
                   </div><!-- form-layout-footer -->

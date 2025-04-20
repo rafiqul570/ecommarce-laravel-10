@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 @section('content')
 
-   <div class="card pd-20 pd-sm-40 bg-warning">
+   <div class="card pd-20 pd-sm-40 bg-info">
       <h2 class="card-body-title mb-5">Add New Product</h2>
       <div class="form-layout">
         <form action="{{route('admin.product.store')}}" method="POST" enctype="multipart/form-data">
@@ -71,22 +71,33 @@
             </div>
           </div><!-- col-12 -->
 
-          <!-- <div class="col-lg-12">
+           <div class="col-lg-12">
             <div class="form-group mg-b-10-force">
-              <label class="form-control-label">Image Color</label>
-              <select class="form-control select2" name="product_color" data-placeholder="Choose one"
+              <label class="form-control-label">Color</label>
+              <select class="form-control select2" name="color_id" data-placeholder="Choose one"
               data-parsley-class-handler="#slWrapper"
               data-parsley-errors-container="#slErrorContainer" required>
               <option selected="" disabled="">Select Color</option>
-              <option value="Black">Black</option>
-              <option value="White">White</option>
-              <option value="Red">Red</option>
-              <option value="Blue">Blue</option>
-              <option value="Yellow">Yellow</option>
-              <option value="Multi-color">Multi color</option>
+              @foreach ($allColor as $data)
+              <option value="{{$data->id}}">{{$data->color_name}}</option>
+              @endforeach
               </select>
             </div>
-          </div> --><!-- col-12 -->
+          </div><!-- col-12 -->
+
+           <div class="col-lg-12">
+            <div class="form-group mg-b-10-force">
+              <label class="form-control-label">Size</label>
+              <select class="form-control select2" name="size_id" data-placeholder="Choose one"
+              data-parsley-class-handler="#slWrapper"
+              data-parsley-errors-container="#slErrorContainer" required>
+              <option selected="" disabled="">Select Size</option>
+              @foreach ($allSize as $data)
+              <option value="{{$data->id}}">{{$data->size_name}}</option>
+              @endforeach
+              </select>
+            </div>
+          </div><!-- col-12 -->
 
           <div class="col-lg-12">
             <div class="form-group">
@@ -100,7 +111,7 @@
         </div><!-- row -->
 
         <div class="form-layout-footer">
-          <button class="btn btn-info mg-r-5">Add Product</button>
+          <button class="btn btn-secondary mg-r-5">Add Product</button>
           <button class="btn btn-secondary">Cancel</button>
         </div><!-- form-layout-footer -->
       </form>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Color;
+use App\Models\Size;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use File;
@@ -18,17 +20,21 @@ class ProductController extends Controller
 
     public function create(){
         $allCategory = Category::latest()->get();
-        return view('admin.product.create',compact('allCategory'));
+        $allColor = Color::latest()->get();
+        $allSize = Size::latest()->get();
+        return view('admin.product.create',compact('allCategory', 'allColor', 'allSize'));
     }
 
 
  public function store(Request $request)
     {
         $request->validate([
-            'product_name' => 'required|unique:products',
+            'product_name' => 'required',
             'product_price' => 'required',
-            'product_quantity' => 'required',
             'category_id' => 'required',
+            'color_id' => 'required',
+            'size_id' => 'required',
+            'product_quantity' => 'required',
             'short_description' => 'required',
             'long_description' => 'required',
             'product_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg}max:2048',
@@ -44,18 +50,26 @@ class ProductController extends Controller
         }
             
             $category_id = $request->category_id;
+            $color_id = $request->color_id;
+            $size_id = $request->size_id;
             
             $category_name = Category::where('id', $category_id)->value('category_name');
+            $color_name = Color::where('id', $color_id)->value('color_name');
+            $size_name = Size::where('id', $size_id)->value('size_name');
            
 
         Product::insert([
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
-            'product_quantity' => $request->product_quantity,
             'category_id' => $request->category_id,
+            'color_id' => $request->color_id,
+            'size_id' => $request->size_id,
+            'category_name' => $category_name,
+            'color_name' => $color_name,
+            'size_name' => $size_name,
+            'product_quantity' => $request->product_quantity,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
-            'category_name' => $category_name,
             'product_img' => $image_name,
             'slug' => strtolower(str_replace( ' ', '-', $request->product_name)),
         ]);
@@ -124,6 +138,8 @@ class ProductController extends Controller
         $request->validate([
             'product_name' => 'required',
             'product_price' => 'required',
+            'product_color' => 'required',
+            'product_size' => 'required',
             'product_quantity' => 'required',
             'short_description' => 'required',
             'long_description' => 'required',
@@ -150,6 +166,8 @@ class ProductController extends Controller
         Product::FindOrFail($id)->update([
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
+            'product_color' => $request->product_color,
+            'product_size' => $request->product_size,
             'product_quantity' => $request->product_quantity,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,

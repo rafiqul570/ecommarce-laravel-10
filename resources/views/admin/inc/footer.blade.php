@@ -22,7 +22,7 @@
       function alertclose(){
         document.getElementById("alert").remove('alert');
       }
-      setTimeout(alertclose, 2000, );
+      setTimeout(alertclose, 1000, );
     </script>
 
     <!-- Datatable -->
