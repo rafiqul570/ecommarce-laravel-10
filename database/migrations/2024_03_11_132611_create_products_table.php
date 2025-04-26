@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('category_name');
             $table->integer('color_id');
             $table->string('color_name');
-            $table->integer('size_id');
-            $table->string('size_name');
             $table->text('short_description');
             $table->text('long_description');
             $table->string('product_img');

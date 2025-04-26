@@ -8,6 +8,7 @@
 <div class="container">
     <h2 class="text-center my-5">Featured Product</h2>
     <div class="row my-5">
+        
             @foreach ($allProduct as $data)
             <div id="home" class="col-md-3">
                 <div class="card shadow-sm">

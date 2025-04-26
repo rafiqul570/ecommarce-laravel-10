@@ -9,8 +9,11 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ClaintController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+
+
 
 
 
@@ -18,27 +21,28 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-//frontend/Home Pages
+//HomeController without middleware
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'homePage')->name('homePage');   
+    Route::get('/', 'homePage')->name('homePage');
+         
 });
 
 
-
-// Bakent/Role
+//HomeController with middleware
 Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function(){
-        Route::get('/redirects', 'index')->name('redirects');
-        
+        Route::get('/redirects', 'roleControll')->name('redirects');
+       
     });
 });
+
 
 
 //Frontend  Pages without middleware
@@ -53,16 +57,27 @@ Route::controller(ClaintController::class)->group(function(){
 //Frontend/Pages with middleware
 Route::middleware('auth')->group(function () {
 Route::controller(ClaintController::class)->group(function(){
-    Route::get('/front/pages/addToCard', 'AddToCard')->name('front.pages.addToCard');
-    Route::post('/front/pages/addProductToCard', 'AddProductToCard')->name('front.pages.addProductToCard');
     Route::get('/front/pages/checkout', 'Checkout')->name('front.pages.checkout');
     Route::get('/front/pages/todaysDeal', 'TodaysDeal')->name('front.pages.todaysDeal');
     Route::get('/front/pages/customService', 'CustomService')->name('front.pages.customService');
-   
     
    });
 
 });
+
+
+//CartController
+Route::middleware('auth')->group(function () {
+Route::controller(CartController::class)->group(function(){
+    Route::get('/front/cart/index', 'index')->name('front.cart.index');
+    Route::post('/front/cart/store', 'store')->name('front.cart.store');
+    Route::post('/front/cart/update', 'updateQuantity')->name('front.cart.update');
+    Route::get('/front/cart/delete/{id}', 'delete')->name('front.cart.delete');
+    
+   });
+
+});
+
 
 
 //Testing page
@@ -99,6 +114,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/category/edit/{id}', 'edit')->name('admin.category.edit');
         Route::post('/admin/category/update', 'update')->name('admin.category.update');
         Route::get('/admin/category/delete/{id}', 'delete')->name('admin.category.delete');
+        // Route::get('category/{category_name}',  'redirectCategory')->name('category.redirect');
 
     });
 });

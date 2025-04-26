@@ -24,44 +24,13 @@ class ClaintController extends Controller
     public function SingleProduct($id){
 
         $product = Product::FindOrFail($id);
-        //$category_id = Product::where('id', $id)->value('category_id');
+        // $category_id = Product::where('id', $id)->value('category_id');
         $related_product = Product::where('category_id', $product->category_id)->take(6)->get();
         return view('front.pages.singleProduct', compact('product', 'related_product'));
 
     }
 
-   public function AddProductToCard(Request $request){
-            // $product_price = $request->product_price;
-            // $quantity = $request->quantity;
-            // $price = $product_price * $quantity;
-
-
-        Cart::insert([
-
-            'user_id' => Auth::id(),
-            'product_id' => $request->product_id,
-            'product_name' => $request->product_name,
-            // 'product_img' => $request->product_img,
-            'product_price' => $request->product_price,
-            'product_color' => $request->product_color,
-            'product_size' => $request->product_size,
-            'quantity' => $request->quantity,
-            
-        ]);
-
-
-        return redirect()->route('front.pages.addToCard')->with('success', 'Success! Your item added to cart');
-    }
-
-
-    public function AddToCard(){
-
-        $user_id = Auth::id();
-        $cart_items = Cart::where('user_id', $user_id )->get();
-        
-        return view('front.pages.addToCard', compact('cart_items'));
-    }
-    
+   
 
     public function Checkout(){
 

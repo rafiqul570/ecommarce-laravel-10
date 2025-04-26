@@ -13,7 +13,6 @@ class Cart extends Model
         'product_id',
         'user_id',
         'product_name',
-        // 'product_img',
         'product_price',
         'product_color',
         'product_size',
@@ -21,4 +20,12 @@ class Cart extends Model
            
        
      ];
- }
+ 
+
+ public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+
+}

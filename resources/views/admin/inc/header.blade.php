@@ -98,7 +98,7 @@
           <li class="nav-item"><a href="{{route('admin.color.index')}}" class="nav-link">All Color</a></li>
         </ul>
 
-        <a href="#" class="sl-menu-link">
+        <!-- <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <span class="menu-item-label">Size</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
@@ -107,7 +107,7 @@
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="{{route('admin.size.create')}}" class="nav-link">Add Size</a></li>
           <li class="nav-item"><a href="{{route('admin.size.index')}}" class="nav-link">All size</a></li>
-        </ul>
+        </ul> -->
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">

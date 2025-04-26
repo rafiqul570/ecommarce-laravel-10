@@ -85,20 +85,6 @@
             </div>
           </div><!-- col-12 -->
 
-           <div class="col-lg-12">
-            <div class="form-group mg-b-10-force">
-              <label class="form-control-label">Size</label>
-              <select class="form-control select2" name="size_id" data-placeholder="Choose one"
-              data-parsley-class-handler="#slWrapper"
-              data-parsley-errors-container="#slErrorContainer" required>
-              <option selected="" disabled="">Select Size</option>
-              @foreach ($allSize as $data)
-              <option value="{{$data->id}}">{{$data->size_name}}</option>
-              @endforeach
-              </select>
-            </div>
-          </div><!-- col-12 -->
-
           <div class="col-lg-12">
             <div class="form-group">
               <label class="form-control-label">Upload Product Image</label>

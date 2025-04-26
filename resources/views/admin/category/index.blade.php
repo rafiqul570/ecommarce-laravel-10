@@ -14,7 +14,7 @@
     <div class="card pd-20 pd-sm-40 form-layout form-layout-5">
       <div class="d-flex justify-content-between">
         <h3 class="text-dark pb-3">All Category</h3>
-        <h5><a  href="{{route('admin.category.create')}}" class="btn btn-info text-light">Add Category</a></h5>
+        <h5 class="mb-3"><a  href="{{route('admin.category.create')}}" class="btn btn-info text-light">Add Category</a></h5>
       </div>
         
          <div class="table-responsive">

@@ -41,9 +41,9 @@
                     </div>
 
                 <div class="row row-xs mg-t-30">
-                    <div class="col-sm-12 d-flex justify-content-end">
-                    <div class="form-layout-footer">
-                        <button class="btn btn-light mg-r-5">Update Image</button>
+                    <div class="col-sm-12" >
+                    <div class="form-layout-footer" >
+                        <button  class="btn btn-light mg-r-5">Update Image</button>
                     </div><!-- form-layout-footer -->
                     </div><!-- col-8 -->
                 </div>

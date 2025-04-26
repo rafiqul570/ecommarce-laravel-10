@@ -18,8 +18,8 @@
 
          <!-- Email Address -->
         <div class="form-group">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-input-label for="email" :value="__('Email (optinal)')" />
+            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 

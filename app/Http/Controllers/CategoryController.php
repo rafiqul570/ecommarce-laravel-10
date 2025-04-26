@@ -62,4 +62,7 @@ class CategoryController extends Controller
         Category::FindOrFail($id)->delete();
         return back()->with('success', 'Success! data delete Successfully');
     }
+
+
+
 }

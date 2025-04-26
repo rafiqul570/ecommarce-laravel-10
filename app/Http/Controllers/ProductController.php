@@ -33,7 +33,6 @@ class ProductController extends Controller
             'product_price' => 'required',
             'category_id' => 'required',
             'color_id' => 'required',
-            'size_id' => 'required',
             'product_quantity' => 'required',
             'short_description' => 'required',
             'long_description' => 'required',
@@ -51,22 +50,18 @@ class ProductController extends Controller
             
             $category_id = $request->category_id;
             $color_id = $request->color_id;
-            $size_id = $request->size_id;
             
             $category_name = Category::where('id', $category_id)->value('category_name');
             $color_name = Color::where('id', $color_id)->value('color_name');
-            $size_name = Size::where('id', $size_id)->value('size_name');
            
 
         Product::insert([
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
             'category_id' => $request->category_id,
-            'color_id' => $request->color_id,
-            'size_id' => $request->size_id,
             'category_name' => $category_name,
+            'color_id' => $request->color_id,
             'color_name' => $color_name,
-            'size_name' => $size_name,
             'product_quantity' => $request->product_quantity,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,

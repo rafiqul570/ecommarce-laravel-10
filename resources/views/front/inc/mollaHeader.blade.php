@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Single Product page</title>
+    <title>Ecommerce</title>
     <meta name="keywords" content="HTML5 Template">
     <meta name="description" content="Molla - Bootstrap eCommerce Template">
     <meta name="author" content="p-themes">
@@ -25,11 +26,12 @@
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/plugins/owl-carousel/owl.carousel.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/jquery.exzoom.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/plugins/nouislider/nouislider.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/jquery.exzoom.css')}}" type="text/css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
       <style>
     
     .color-radio input[type="radio"] {
@@ -50,22 +52,27 @@
       background-color: #f8f9fa;
     }
 
-     .size-radio input[type="radio"] {
+     .size-option {
       display: none;
     }
 
-    .size-radio label {
+    .size-label {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
       border: 2px solid #ccc;
       border-radius: 6px;
-      padding: 10px 20px;
+      margin: 5px;
       cursor: pointer;
-      font-weight: 500;
-      margin-right: 10px;
+      user-select: none;
+      transition: all 0.2s;
     }
 
-    .size-radio input[type="radio"]:checked + label {
-      border-color: #000;
-      background-color: #f8f9fa;
+    .size-option:checked + .size-label {
+      color: black;
+      border-color: red;
     }
 
      
@@ -91,6 +98,7 @@
             </div><!-- End .header-left -->
 
             <div class="header-right">
+
                 <ul class="top-menu">
                     <li>
                         <a href="#">Links</a>
@@ -99,11 +107,33 @@
                             <li><a href="wishlist.html"><i class="icon-heart-o"></i>Wishlist <span>(3)</span></a></li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+                            
+                           
+                            <li>
+                            
+                           </li>
+                         
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
-            </div><!-- End .header-right -->
+                
+                <div class="header-dropdown">
+                @if(Auth::check())  
+                {{ Auth::user()->name }}
+                <div class="header-menu">
+                    <ul>
+                        <li><a href="#">Dashboard</a></li>
+                        <li style="margin-left: 15px;">
+                         <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                            <button type="submit">Logout</button>
+                        </form>
+                        </li>
+                    </ul>
+                     @endif
+                </div><!-- End .header-menu -->
+            </div><!-- End .header-dropdown -->
+          </div><!-- End .header-right -->
         </div><!-- End .container -->
     </div><!-- End .header-top -->
 

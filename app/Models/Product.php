@@ -17,12 +17,12 @@ class Product extends Model
         'category_name',
         'color_id',
         'color_name',
-        'size_id',
-        'size_name',
         'short_description',
         'long_description',
         'product_img',
         'slug',
 
     ];
+
+
 }
