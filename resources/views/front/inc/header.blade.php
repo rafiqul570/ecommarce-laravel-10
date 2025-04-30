@@ -1,6 +1,7 @@
 @php
   $allCategory = App\Models\Category::latest()->get();      
   $allProduct = App\Models\Product::latest()->get();   
+  $cartItems = App\Models\Cart::latest()->get();   
 @endphp
 <!DOCTYPE html>
 <html lang="zxx">
@@ -98,8 +99,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-phone"></i>+880 1721853793</li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -120,9 +121,28 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
+                           <div class="header__top__right__language">
+                            <div class="header-dropdown">
+                            @if(Auth::check())  
+                            {{ Auth::user()->name }}
+                            <div class="header-menu">
+                                <ul>
+                                    <li><a href="{{route('front.dashboard')}}">Dashboard</a></li>
+                                    <li style="margin-left: 15px;">
+                                     <form method="POST" action="{{ route('logout') }}">
+                                      @csrf
+                                     <button style="background:#222222; color:#fff; border: none;" type="submit">Logout</button>
+                                    </form>
+                                    </li>
+                                </ul>
+                            </div><!-- End .header-menu -->
+                           </div><!-- End .header-dropdown -->
+                           @else
+                           <div class="header__top__right__auth">
                                 <a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a>
                             </div>
+                           @endif
+                          </div>      
                         </div>
                     </div>
                 </div>
@@ -160,8 +180,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i> <span>2</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                         <li><a href="{{route('front.cart.index')}}"><i class="fa fa-shopping-cart"></i> <span id="cart-count" class="cart-count">0</span></a></li>
                         </ul>
                         <div class="header__cart__price"></div>
                     </div>

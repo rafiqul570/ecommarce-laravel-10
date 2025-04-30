@@ -4,7 +4,7 @@
 	            	<div class="row">
 	            		<div class="col-sm-6 col-lg-3">
 	            			<div class="widget widget-about">
-	            				<img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+	            				<img src="{{asset('assets/images/logo.png')}}" class="footer-logo" alt="Footer Logo" width="105" height="25">
 	            				<p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
 
 	            				<div class="social-icons">
@@ -67,12 +67,12 @@
 	        	<div class="container">
 	        		<p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
 	        		<figure class="footer-payments">
-	        			<img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+	        			<img src="{{asset('assets/images/payments.png')}}" alt="Payment methods" width="272" height="20">
 	        		</figure><!-- End .footer-payments -->
 	        	</div><!-- End .container -->
 	        </div><!-- End .footer-bottom -->
         </footer><!-- End .footer -->
-    </div><!-- End .page-wrapper -->
+   
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
    
@@ -91,47 +91,13 @@
     <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
     <!-- Main JS File -->
     <script src="{{asset('assets/js/main.js')}}"></script>
-  
-  <!-- Image Zoom -->
+    <script src="{{asset('assets/js/custom.js')}}"></script>
+
+   
+   <!-- Quantity Update -->
+
     <script>
-    $(function(){
-
-      $("#exzoom").exzoom({
-
-        // thumbnail nav options
-        "navWidth": 60,
-        "navHeight": 60,
-        "navItemNum": 5,
-        "navItemMargin": 7,
-        "navBorder": 1,
-
-        // autoplay
-        "autoPlay": false,
-
-        // autoplay interval in milliseconds
-        "autoPlayTimeout": 2000
-        
-      });
-
-    });
-    </script>
-
-    <!-- Product Size -->
-    <script>
-    const radios = document.querySelectorAll('input[name="size"]');
-    const output = document.getElementById('selectedSize');
-
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        output.textContent = "Selected Size: " + radio.value;
-      });
-    });
-  </script>
-
-<!-- Quantity Uptate ajax -->
-
-<script>
-    $(document).on('change', '.update-qty', function () {
+    	$(document).on('change', '.update-qty', function () {
         let itemId = $(this).data('id');
         let qty = $(this).val();
 
@@ -153,26 +119,74 @@
             }
         });
     });
+
+ </script>
+
+ <!-- Ajax Link -->
+
+ <script>
+	$(document).on('click', '.ajax-link', function(e) {
+    e.preventDefault(); // Stop the link from reloading the page
+
+    let url = $(this).attr('href');
+
+    $.ajax({
+        url: url,
+        method: 'GET',
+        success: function(response) {
+            $('#result').html(response);
+        },
+        error: function(xhr) {
+            alert('Error: ' + xhr.statusText);
+        }
+    });
+  });
 </script>
 
-<!-- Ajax Link -->
+
+<!-- Add To Cart count -->
+
 <script>
-    $(document).on('click', '.ajax-link', function(e) {
-        e.preventDefault(); // Stop the link from reloading the page
-
-        let url = $(this).attr('href');
-
+    function updateCartCount() {
         $.ajax({
-            url: url,
-            method: 'GET',
-            success: function(response) {
-                $('#result').html(response);
+            url: "{{ route('front.cart.count') }}",
+            type: 'GET',
+            success: function(data) {
+                $('#cart-count').text(data.count);
             },
-            error: function(xhr) {
-                alert('Error: ' + xhr.statusText);
+            error: function(err) {
+                console.log('Error fetching cart count', err);
             }
         });
-    });
+    }
 
+    // Call once on page load
+    updateCartCount();
+
+    // Then update every 10 seconds (adjust interval as needed)
+    setInterval(updateCartCount, 1000);
+</script>
+
+ <!-- prevent page reload -->
+<script>
+$(document).on('click', '.product-link', function(e) {
+    e.preventDefault(); // prevent page reload
+    
+    var id = $(this).data('id');
+    var slug = $(this).data('slug');
+
+    $.ajax({
+        url: '/front.pages.singleProduct/' + id + '/' + slug, // Your route pattern
+        type: 'GET',
+        success: function(response) {
+            $('#product-details').html(response); // Load the response into the div
+        },
+        error: function(xhr) {
+            console.log('Error:', xhr);
+        }
+    });
+});
+</script>
+  
 </body>
 </html>

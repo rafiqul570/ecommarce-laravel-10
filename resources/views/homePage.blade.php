@@ -1,3 +1,7 @@
+@php      
+  $allProduct = App\Models\Product::latest()->get();     
+@endphp
+
 @extends('front.layouts.template')
 @include('front.inc.header')
 @include('front.inc.hero')

@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ClaintController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -17,9 +18,9 @@ use App\Models\User;
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/front/dashboard', function () {
+    return view('front.dashboard');
+})->middleware(['auth', 'verified'])->name('front.dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -57,7 +58,6 @@ Route::controller(ClaintController::class)->group(function(){
 //Frontend/Pages with middleware
 Route::middleware('auth')->group(function () {
 Route::controller(ClaintController::class)->group(function(){
-    Route::get('/front/pages/checkout', 'Checkout')->name('front.pages.checkout');
     Route::get('/front/pages/todaysDeal', 'TodaysDeal')->name('front.pages.todaysDeal');
     Route::get('/front/pages/customService', 'CustomService')->name('front.pages.customService');
     
@@ -73,6 +73,20 @@ Route::controller(CartController::class)->group(function(){
     Route::post('/front/cart/store', 'store')->name('front.cart.store');
     Route::post('/front/cart/update', 'updateQuantity')->name('front.cart.update');
     Route::get('/front/cart/delete/{id}', 'delete')->name('front.cart.delete');
+    Route::get('/front/cart/count', 'getCartCount')->name('front.cart.count');
+    
+   });
+
+});
+
+//CheckoutController
+Route::middleware('auth')->group(function () {
+Route::controller(CheckoutController::class)->group(function(){
+    Route::get('/front/checkout/index', 'index')->name('front.checkout.index');
+    Route::get('/front/checkout/create', 'create')->name('front.checkout.create');
+    Route::post('/front/checkout/store', 'store')->name('front.checkout.store');
+    //Route::post('/front/checkout/update', 'updateQuantity')->name('front.checkout.update');
+    //Route::get('/front/checkout/delete/{id}', 'delete')->name('front.checkout.delete');
     
    });
 

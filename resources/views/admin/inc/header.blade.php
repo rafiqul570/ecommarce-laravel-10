@@ -55,7 +55,7 @@
 
   <!-- ########## START: LEFT PANEL ########## -->
 
-    <div class="sl-logo pl-5"><span class="text-uppercase logged-name text-light mr-3">{{ Auth::user()->name }}</span></div>
+    <div class="sl-logo pl-5"><span class="text-uppercase logged-name text-light mr-3"><img src="{{asset('frontend/img/logo2.png')}}" alt=""></span></div>
     <div class="sl-sideleft">
       <div class="sl-sideleft-menu">
         <a href="{{route('redirects')}}" class="sl-menu-link active">

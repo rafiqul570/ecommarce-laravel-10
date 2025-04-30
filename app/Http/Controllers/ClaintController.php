@@ -12,8 +12,8 @@ use DB;
 class ClaintController extends Controller
 {
 
-    
     //data show category_page
+    
     public function CategoryPage($id){
         $allCategory = Category::findOrFail($id);
         $allProduct = Product::where('category_id', $id)->latest()->get();
@@ -30,12 +30,6 @@ class ClaintController extends Controller
 
     }
 
-   
-
-    public function Checkout(){
-
-        return view('front.pages.checkout');
-    }
 
     public function TodaysDeal(){
 
@@ -91,6 +85,6 @@ class ClaintController extends Controller
     }
     return redirect()->route('cart');
 }
-//============================================================
+
 
 }

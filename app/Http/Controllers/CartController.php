@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
+
 class CartController extends Controller
 {
     
@@ -21,9 +22,11 @@ class CartController extends Controller
         
         $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
         
+        $shippingCost = 50;
+
         $total = $cartItems->sum(fn($item) => $item->product_price * $item->quantity);
         
-        return view('front.cart.index', compact('cartItems', 'total'));
+        return view('front.cart.index', compact('cartItems', 'shippingCost', 'total'));
     }
 
 
@@ -46,7 +49,7 @@ class CartController extends Controller
         ]);
 
 
-        return redirect()->route('front.cart.index')->with('success', 'Success! Your item added to cart');
+        return back()->with('success', 'Success! Your item added to cart');
     }
 
 
@@ -88,6 +91,21 @@ class CartController extends Controller
    public function delete($id){
         Cart::FindOrFail($id)->delete();
         return back()->with('success', 'Success! data delete Successfully');
+    }
+
+
+    public function getCartCount()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            // If user is guest, you can return 0 or handle session cart count
+            return response()->json(['count' => 0]);
+        }
+
+        $count = Cart::where('user_id', $user->id)->sum('quantity');
+
+        return response()->json(['count' => $count]);
     }
 
     

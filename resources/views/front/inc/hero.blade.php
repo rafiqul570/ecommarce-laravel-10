@@ -1,4 +1,6 @@
-
+@php
+  $allCategory = App\Models\Category::latest()->get();       
+@endphp
     <!-- Hero Section Begin -->
     <section class="hero mt-5">
         <div class="container">

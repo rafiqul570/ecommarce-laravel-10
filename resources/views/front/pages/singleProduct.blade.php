@@ -72,8 +72,8 @@
                         <div class="mb-3">
                           <div class="color-radio d-flex flex-wrap gap-2" style="margin-left: 50px;">
                             @foreach($related_product as $data)
-                            <a class="ajax-link" href="{{route('front.pages.singleProduct', [$data->id, $data->slug])}}">
-                                <img id="result" src="{{asset('/uploads/image/'.$data->product_img)}}" width="40" />
+                            <a href="{{route('front.pages.singleProduct', [$data->id, $data->slug])}}">
+                                <img src="{{asset('/uploads/image/'.$data->product_img)}}" width="40" />
                             </a>
                             @endforeach
                         </div>
@@ -104,7 +104,7 @@
                         <div class="details-filter-row details-row-size">
                             <label for="qty">Qty:</label>
                             <div class="product-details-quantity">
-                                <input type="number" name="quantity" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
                             </div><!-- End .product-details-quantity -->
                         </div><!-- End .details-filter-row -->
 

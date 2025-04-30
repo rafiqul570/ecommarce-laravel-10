@@ -73,6 +73,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/2.2.3/jquery.elevatezoom.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<!-- Add To Cart count -->
 
+<script>
+    function updateCartCount() {
+        $.ajax({
+            url: "{{ route('front.cart.count') }}",
+            type: 'GET',
+            success: function(data) {
+                $('#cart-count').text(data.count);
+            },
+            error: function(err) {
+                console.log('Error fetching cart count', err);
+            }
+        });
+    }
+
+    // Call once on page load
+    updateCartCount();
+
+    // Then update every 10 seconds (adjust interval as needed)
+    setInterval(updateCartCount, 1000);
+</script>
 </body>
 </html>

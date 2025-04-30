@@ -1,12 +1,15 @@
 @include('front.inc.mollaHeader')
 
 <main class="main">
-<div class="">
-<div class="container">
-<h2 class="mb-4">Shopping Cart</h2>
-</div>
-</div>
-
+ <nav aria-label="breadcrumb" class="breadcrumb-nav">
+	<div class="container">
+	    <ol class="breadcrumb">
+	        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+	        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/front/pages/singleProduct/2/iphone-pro-max">Product Details</a></li>
+	        <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+	    </ol>
+	</div><!-- End .container -->
+</nav><!-- End .breadcrumb-nav -->
 <div class="page-content">
 <div class="cart">
 <div class="container">
@@ -94,19 +97,19 @@
 								<label class="custom-control-label" for="express-shipping">Shipping Fee</label>
 							    </div><!-- End .custom-control -->
 							</td>
-							<td><strong id="cart-shipping">$20.00</strong></td> {{-- Default fixed value --}}
-						</tr><!-- End .summary-shipping-row -->
-
-						<tr class="summary-total">
+							<td>${{ number_format($shippingCost, 2) }}</td>
+						  
+						  </tr><!-- End .summary-shipping-row -->
+						 <tr class="summary-total">
 							<td>Total</td>
 							<td><strong id="cart-grandtotal">${{ number_format($total + 20, 2) }}</strong></td>
 						</tr><!-- End .summary-total -->
 					</tbody>
 				</table><!-- End .table table-summary -->
 				@if($total <= 0)
-				<a href="" class="btn btn-outline-primary-2 btn-order btn-block disabled">PROCEED TO CHECKOUT</a>
+				<a href="{{route('front.checkout.create')}}" class="btn btn-outline-primary-2 btn-order btn-block disabled">PROCEED TO CHECKOUT</a>
 				@else
-				<a href="" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+				<a href="{{route('front.checkout.create')}}" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 				@endif
 			</div><!-- End .summary -->
 
