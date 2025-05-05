@@ -111,6 +111,18 @@
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
+            <span class="menu-item-label">Shipping Cost</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div>
+        </a>
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{route('admin.shippingcost.create')}}" class="nav-link">Add Shippingcost</a></li>
+          <li class="nav-item"><a href="{{route('admin.shippingcost.index')}}" class="nav-link">All Shippingcost</a></li>
+        </ul>
+        
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
             <span class="menu-item-label">Product</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div>
@@ -122,27 +134,9 @@
 
 
        <?php }else{ ?>
-          <label class="sidebar-label"></label>
-           <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <span class="menu-item-label">Orders</span>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-
-        <label class="sidebar-label"></label>
-           <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <span class="menu-item-label">Orders</span>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-
-        <label class="sidebar-label"></label>
-           <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <span class="menu-item-label">Orders</span>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-
+         
+      <h1>Data Not Found</h1>
+      
       <?php } ?>
 
       </div><!-- sl-sideleft-menu -->

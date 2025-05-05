@@ -86,6 +86,20 @@
           </div><!-- col-12 -->
 
           <div class="col-lg-12">
+            <div class="form-group mg-b-10-force">
+              <label class="form-control-label">Shippingcost</label>
+              <select class="form-control select2" name="shippingCost" data-placeholder="Choose one"
+              data-parsley-class-handler="#slWrapper"
+              data-parsley-errors-container="#slErrorContainer" required>
+              <option selected="" disabled="">Select Shippingcost</option>
+              @foreach ($shippingCost as $data)
+              <option value="{{$data->shippingcost}}">{{$data->shippingcost}}</option>
+              @endforeach
+              </select>
+            </div>
+          </div><!-- col-12 -->
+
+          <div class="col-lg-12">
             <div class="form-group">
               <label class="form-control-label">Upload Product Image</label>
               <input class="form-control" type="file" name="product_img" value="John Paul" placeholder="Enter firstname">

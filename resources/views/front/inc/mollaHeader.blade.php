@@ -125,7 +125,7 @@
                 {{ Auth::user()->name }}
                 <div class="header-menu">
                     <ul>
-                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="{{route('front.pages.pendingOrders')}}">Dashboard</a></li>
                         <li style="margin-left: 15px;">
                          <form method="POST" action="{{ route('logout') }}">
                           @csrf

@@ -60,38 +60,31 @@
     						@foreach($cartItems as $item)
     						<tr>
     							<td><a href="#">{{$item -> product_name}}</a></td>
-    							<td>${{ number_format($item->product_price * $item->quantity, 2) }}</td>
+    							
+    							<td>&#2547 {{ number_format($item->product_price * $item->product_quantity, 2) }}</td>
     						</tr>
     						@endforeach
     						<tr class="summary-total">
     							
     							<td>Subtotal:</td>
-    							<td>${{ number_format($subtotal, 2) }}</td>
+    							<td>&#2547 {{ number_format($subtotal, 2) }}</td>
     						</tr><!-- End .summary-subtotal -->
     						<tr>
     							<td>Shipping:</td>
-    							<td>${{ number_format($shippingCost, 2) }}</td>
+    							<td>&#2547 {{ number_format($shippingCost, 2) }}</td>
     						</tr>
     						<tr class="summary-total">
     							<td>Total:</td>
-    							<td><strong>${{ number_format($total, 2) }}</strong></td>
+    							<td><strong>&#2547 {{ number_format($total, 2) }}</strong></td>
     						</tr><!-- End .summary-total -->
     						
     					</tbody>
     				</table><!-- End .table table-summary -->
 
     				<div class="accordion-summary" id="accordion-payment">
-					    <div class="card mb-5">
-					        <div class="card-header" id="heading-3">
-					            <h1 class="card-title">
-					               Cash on delivery
-					            </h1>
-					        </div><!-- End .card-header -->
-					    </div><!-- End .card -->
-
     				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
     					<span class="btn-text">Place Order</span>
-    					<span class="btn-hover-text">Proceed to Checkout</span>
+    					<span class="btn-hover-text">Proceed to Checkout (<span id="cart-count2">0</span>)</span>
     				</button>
     			</div><!-- End .summary -->
     		</aside><!-- End .col-lg-3 -->

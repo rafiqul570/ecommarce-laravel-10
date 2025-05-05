@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Size;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Shippingcost;
 use File;
 use DB;
 
@@ -22,7 +23,8 @@ class ProductController extends Controller
         $allCategory = Category::latest()->get();
         $allColor = Color::latest()->get();
         $allSize = Size::latest()->get();
-        return view('admin.product.create',compact('allCategory', 'allColor', 'allSize'));
+        $shippingCost = Shippingcost::latest()->get();
+        return view('admin.product.create',compact('allCategory', 'allColor', 'allSize', 'shippingCost'));
     }
 
 
@@ -36,6 +38,7 @@ class ProductController extends Controller
             'product_quantity' => 'required',
             'short_description' => 'required',
             'long_description' => 'required',
+            'shippingCost' => 'required',
             'product_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg}max:2048',
         ]);
         
@@ -65,6 +68,7 @@ class ProductController extends Controller
             'product_quantity' => $request->product_quantity,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
+            'shippingCost' => $request->shippingCost,
             'product_img' => $image_name,
             'slug' => strtolower(str_replace( ' ', '-', $request->product_name)),
         ]);

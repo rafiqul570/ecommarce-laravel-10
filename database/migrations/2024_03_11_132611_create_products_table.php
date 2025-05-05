@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('color_name');
             $table->text('short_description');
             $table->text('long_description');
+            $table->string('shippingCost');
             $table->string('product_img');
             $table->string('slug');
             $table->timestamps();

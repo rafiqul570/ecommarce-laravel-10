@@ -107,7 +107,7 @@
             data: {
                 _token: '{{ csrf_token() }}',
                 id: itemId,
-                quantity: qty
+                product_quantity: qty
             },
             success: function (res) {
                 if (res.success) {
@@ -167,6 +167,29 @@
     setInterval(updateCartCount, 1000);
 </script>
 
+<!-- PROCEED TO CHECKOUT (quantity count) -->
+<script>
+    function updateCartCount() {
+        $.ajax({
+            url: "{{ route('front.cart.count') }}",
+            type: 'GET',
+            success: function(data) {
+                $('#cart-count2').text(data.count);
+            },
+            error: function(err) {
+                console.log('Error fetching cart count', err);
+            }
+        });
+    }
+
+    // Call once on page load
+    updateCartCount();
+
+    // Then update every 10 seconds (adjust interval as needed)
+    setInterval(updateCartCount, 1000);
+</script>
+
+ 
  <!-- prevent page reload -->
 <script>
 $(document).on('click', '.product-link', function(e) {

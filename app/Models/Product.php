@@ -19,6 +19,7 @@ class Product extends Model
         'color_name',
         'short_description',
         'long_description',
+        'shippingCost',
         'product_img',
         'slug',
 

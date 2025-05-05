@@ -104,14 +104,21 @@
                         <div class="details-filter-row details-row-size">
                             <label for="qty">Qty:</label>
                             <div class="product-details-quantity">
-                                <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                <input type="number" name="product_quantity" id="quantity" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
                             </div><!-- End .product-details-quantity -->
                         </div><!-- End .details-filter-row -->
 
                         <!-- hidden option -->
                         <input type="hidden" name="product_id" value="{{$product->id}}">
+                        
                         <input type="hidden" name="product_name" value="{{$product->product_name}}">
+                        
+                        <input type="hidden" name="product_img" value="{{$product->product_img}}">
+
                         <input type="hidden" name="product_price" value="{{$product->product_price}}">
+                        
+                        <input type="hidden" name="shippingCost" value="{{$product->shippingCost}}">
+
                         
                         <div class="product-details-action mt-5">
                             <button class="btn-product btn-cart">add to cart</button>

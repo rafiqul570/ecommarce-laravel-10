@@ -15,9 +15,9 @@
    <div class="card pd-20 pd-sm-40 form-layout form-layout-5 text-light bg-info">
    <div class="d-flex justify-content-between">
           <h3 class="text-dark pb-3">Edit Category</h3>
-          <h5><a  href="{{route('admin.category.index')}}" class="btn btn-light text-dark">All Category</a></h5>
+          <h5><a  href="{{route('admin.shippingcost.index')}}" class="btn btn-light text-dark">All Category</a></h5>
           </div>
-       <form action="{{route('admin.category.update') }}" method="POST">
+       <form action="{{route('admin.shippingcost.update') }}" method="POST">
           @csrf
 
           <input type="hidden" value="{{$editCategory->id}}" name="id">

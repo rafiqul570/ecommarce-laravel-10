@@ -11,6 +11,8 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ClaintController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShippingcostController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -46,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-//Frontend  Pages without middleware
+//ClaintController without middleware
 Route::controller(ClaintController::class)->group(function(){
     Route::get('/front/pages/categoryPage/{id}/{slug}', 'CategoryPage')->name('front.pages.categoryPage');
     Route::get('/front/pages/singleProduct/{id}/{slug}', 'SingleProduct')->name('front.pages.singleProduct');
@@ -55,11 +57,14 @@ Route::controller(ClaintController::class)->group(function(){
 });
 
 
-//Frontend/Pages with middleware
+//ClaintController with middleware
 Route::middleware('auth')->group(function () {
 Route::controller(ClaintController::class)->group(function(){
     Route::get('/front/pages/todaysDeal', 'TodaysDeal')->name('front.pages.todaysDeal');
     Route::get('/front/pages/customService', 'CustomService')->name('front.pages.customService');
+    Route::get('/front/pages/payment', 'payment')->name('front.pages.payment');
+    Route::get('/front/pages/pendingOrders', 'pendingOrders')->name('front.pages.pendingOrders');
+    Route::get('/front/pages/history', 'history')->name('front.pages.history');
     
    });
 
@@ -85,27 +90,23 @@ Route::controller(CheckoutController::class)->group(function(){
     Route::get('/front/checkout/index', 'index')->name('front.checkout.index');
     Route::get('/front/checkout/create', 'create')->name('front.checkout.create');
     Route::post('/front/checkout/store', 'store')->name('front.checkout.store');
-    //Route::post('/front/checkout/update', 'updateQuantity')->name('front.checkout.update');
-    //Route::get('/front/checkout/delete/{id}', 'delete')->name('front.checkout.delete');
+    
     
    });
 
 });
 
 
-
-//Testing page
+//OrderController
 Route::middleware('auth')->group(function () {
-Route::controller(ClaintController::class)->group(function(){
-    Route::get('/products', 'Index')->name('products');
-    Route::get('/cart', 'Cart')->name('cart');
-    Route::post('/remove-from-cart', 'RemoveFromCart')->name('remove.from.cart');
-    
-   
+Route::controller(OrderController::class)->group(function(){
+    Route::post('/front/order/store', 'store')->name('front.order.store');
     
    });
 
 });
+
+
 
 //UserProfile
 Route::middleware('auth')->group(function () {
@@ -157,6 +158,18 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/size/edit/{id}', 'edit')->name('admin.size.edit');
         Route::post('/admin/size/update', 'update')->name('admin.size.update');
         Route::get('/admin/size/delete/{id}', 'delete')->name('admin.size.delete');
+
+    });
+});
+
+
+// ShippingCost
+Route::middleware('auth')->group(function () {
+    Route::controller(ShippingcostController::class)->group(function(){
+        Route::get('/admin/shippingcost/index', 'index')->name('admin.shippingcost.index');
+        Route::get('/admin/shippingcost/create', 'create')->name('admin.shippingcost.create');
+        Route::post('/admin/shippingcost/store', 'store')->name('admin.shippingcost.store');
+        Route::get('/admin/shippingcost/delete/{id}', 'delete')->name('admin.shippingcost.delete');
 
     });
 });

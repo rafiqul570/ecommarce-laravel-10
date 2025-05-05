@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Product;
 use App\Models\Cart;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Checkout;
+use App\Models\Order;
 use DB;
 class ClaintController extends Controller
 {
@@ -24,7 +27,6 @@ class ClaintController extends Controller
     public function SingleProduct($id){
 
         $product = Product::FindOrFail($id);
-        // $category_id = Product::where('id', $id)->value('category_id');
         $related_product = Product::where('category_id', $product->category_id)->take(6)->get();
         return view('front.pages.singleProduct', compact('product', 'related_product'));
 
@@ -48,43 +50,45 @@ class ClaintController extends Controller
     }
 
 
-     public function History(){
+     
+     public function pendingOrders(){
 
-        return view('front.userProfile.history');
+        $pendingOrders = Order::where('user_id', auth()->id())->get();
+
+        $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
+        
+        $shippingCost = Cart::with('product')->where('user_id', auth()->id())->value('shippingCost');
+        
+        $total = $cartItems->sum(fn($item) => $item->product_price * $item->quantity);
+
+        $grand_total = $total + $shippingCost;
+
+        return view('front.pages.pendingOrders', compact( 'pendingOrders', 'shippingCost', 'grand_total'));
+    }
+
+   
+    public function history(){
+
+        return view('front.pages.history');
     }
 
 
-     public function PendingOrders(){
+    public function payment(){
+        
+        $paymentMethod = Order::where('user_id', auth()->id())->get();
 
-        return view('front.userProfile.pendingOrders');
+        //$cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
+        
+        $shippingCost = Order::where('user_id', auth()->id())->value('shippingCost');
+        
+        $total = $paymentMethod->sum(fn($item) => $item->product_price * $item->product_quantity);
+
+        $grand_total = $total + $shippingCost;
+
+        return view('front.pages.payment', compact( 'paymentMethod', 'grand_total'));
     }
 
 
-
-//==========================Tasting====================================
-
- public function Index(){
-
-        return view('products');
-    }
-
-
- public function Cart(){
-
-        return view('cart');
-    }
-
-
- public function RemoveFromCart(Request $request)
-{
-    $cart = session()->get('cart', []);
-    $id = $request->id;
-    if(isset($cart[$id])) {
-        unset($cart[$id]);
-        session()->put('cart', $cart);
-    }
-    return redirect()->route('cart');
-}
 
 
 }
