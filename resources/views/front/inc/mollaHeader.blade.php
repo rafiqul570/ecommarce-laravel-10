@@ -152,14 +152,14 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="{{route('homePage')}}" class="logo">
+                <a href="{{route('home')}}" class="logo">
                     <img src="{{asset('assets/images/logo.png')}}" alt="Molla Logo" width="105" height="25">
                 </a>
 
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container active">
-                            <a href="{{route('homePage')}}" class="">Home</a>
+                            <a href="{{route('home')}}" class="">Home</a>
 
                         </li>
                         

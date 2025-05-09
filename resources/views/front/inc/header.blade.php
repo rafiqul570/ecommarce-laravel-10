@@ -155,7 +155,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="{{route('homePage')}}"><img src="{{asset('frontend/img/logo2.png')}}" alt=""></a>
+                        <a href="{{route('home')}}"><img src="{{asset('frontend/img/logo2.png')}}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">

@@ -132,6 +132,12 @@
           <li class="nav-item"><a href="{{route('admin.product.index')}}" class="nav-link">All Product</a></li>
         </ul>
 
+        <a href="{{route('admin.order.index')}}" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <span class="menu-item-label">Order</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+
 
        <?php }else{ ?>
          

@@ -85,7 +85,9 @@
   <div class="dashboard-wrapper">
     <!-- Sidebar -->
     <div class="sidebar p-3 d-md-block" id="sidebar">
-      <h4 class="text-white mb-4">User Panel</h4>
+      <a href="{{route('home')}}">
+        <h4 class="text-white my-4">User Panel</h4>
+      </a>
       <ul class="nav flex-column">
         <li class="nav-item">
           <a class="nav-link" href="{{route('front.pages.pendingOrders')}}"><i class="fas fa-home me-2"></i>Dashboard</a>

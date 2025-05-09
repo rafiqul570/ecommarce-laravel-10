@@ -13,6 +13,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShippingcostController;
+use App\Http\Controllers\BkashController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -33,7 +34,7 @@ Route::middleware('auth')->group(function () {
 
 //HomeController without middleware
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'homePage')->name('homePage');
+    Route::get('/', 'home')->name('home');
          
 });
 
@@ -42,6 +43,7 @@ Route::controller(HomeController::class)->group(function(){
 Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function(){
         Route::get('/redirects', 'roleControll')->name('redirects');
+
        
     });
 });
@@ -100,12 +102,37 @@ Route::controller(CheckoutController::class)->group(function(){
 //OrderController
 Route::middleware('auth')->group(function () {
 Route::controller(OrderController::class)->group(function(){
+    Route::get('/admin/order/index', 'index')->name('admin.order.index');
     Route::post('/front/order/store', 'store')->name('front.order.store');
+    Route::get('/front/order/delivered/{id}', 'delivered')->name('front.order.delivered');
+    Route::get('/admin/pdf/invoice/{id}', 'print_pdf')->name('admin.pdf.invoice');
     
    });
 
 });
 
+
+
+
+//Bkashcontroller-2
+
+Route::middleware('auth')->group(function () {
+    Route::controller(BkashTokenizePaymentController::class)->group(function(){
+    // Payment Routes for bKash
+    Route::get('/bkash/payment', 'index')->name('bkashT::bkash-payment');
+    Route::get('/bkash/create-payment', 'createPayment')->name('bkash-create-payment');
+    Route::get('/bkash/callback', 'callBack')->name('bkash.callBack');
+
+    //search payment
+    Route::get('/bkash/search/{trxID}', 'searchTnx')->name('bkash-serach');
+
+    //refund payment routes
+    Route::get('/bkash/refund', 'refund')->name('bkash-refund');
+    Route::get('/bkash/refund/status','refundStatus')->name('bkash-refund-status');
+
+});
+
+});
 
 
 //UserProfile
@@ -191,6 +218,10 @@ Route::middleware('auth')->group(function () {
 
     });
 });
+
+ 
+
+
 
 
 require __DIR__.'/auth.php';

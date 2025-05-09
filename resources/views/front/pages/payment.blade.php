@@ -18,9 +18,18 @@
 		<div class="col-md-8">
 			<div class="card shadow-sm mb-1 bg-light p-4">
 			 <span style="font-size: 18px; color: #000; font-weight: 500;" class="mb-2">Select Payment Method</span>
-			 <div>
-			 	<span style="border:2px solid black; padding: 10px;p"><a href="">Bkash</a></span>
-			 	<span style="border:2px solid black; padding: 10px"><a href="">Cash on delivery</a></span>
+			 <div style="display: inline-flex; column-gap: 30px;">
+			 	
+			 	<form onclick="return confirm('Order Confirm?')" action="{{route('front.order.store')}}" method="POST"> 
+				 @csrf
+			 	<button type="submit" style="font-size: 24px;" class="btn btn-outline-primary-2 btn-order btn-block">Cash on delivery</button>
+			 	
+			 	</form>
+			 	 <form action="{{route('bkash-create-payment')}}" method="POST"> 
+				 @csrf
+			 	<button type="submit" style="font-size: 24px;" class="btn btn-outline-primary-2 btn-order btn-block">Bkash</button>
+			 	</form>
+			 	
 			 </div>
 		  </div>
 		</div>
@@ -32,7 +41,7 @@
 				<table class="table table-summary">
 					<tbody>
 						@php
-						$totalQuantity = \App\Models\Order::where('user_id', Auth::id())->sum('product_quantity');
+						$totalQuantity = \App\Models\Cart::where('user_id', Auth::id())->sum('product_quantity');
 						@endphp
 						<tr class="summary-subtotal">
 							<td style="font-size:12px">Subtotal({{$totalQuantity}} items and shipping fee included)</td>
@@ -45,12 +54,6 @@
 						</tr><!-- End .summary-total -->
 					</tbody>
 				</table><!-- End .table table-summary -->
-				<form action="{{route('front.order.store')}}" method="POST"> 
-				 @csrf
-				 
-				 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">Proceed to pay</button>
-
-				</form>
 			</div>
 		</div>
 	</div>

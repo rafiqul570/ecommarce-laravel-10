@@ -28,7 +28,7 @@
 					@foreach($shippingAddress as $address)
 					<tbody>
 						<tr>
-							<td><span class="text-info">City/Village - </span>{{$address->city}}</td>
+							<td><span class="text-info">City - </span>{{$address->city}}</td>
 						</tr>
 
 						<tr>
@@ -103,12 +103,10 @@
 						</tr><!-- End .summary-total -->
 					</tbody>
 				</table><!-- End .table table-summary -->
-				<form action="{{route('front.order.store')}}" method="POST"> 
-				 @csrf
-				 
+				
+				 <a href="{{route('front.pages.payment')}}">
 				 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">Proceed to pay</button>
-
-				</form>
+				 </a>
 			</div>
 		</div>
 	</div>
